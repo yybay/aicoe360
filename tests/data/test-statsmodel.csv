@@ -1,0 +1,9 @@
+gender,accent,accuracy
+male,native,0.8
+female,Non-native,0.7
+male,Non-native,0.9
+female,native,0.6
+male,Non-native,0.7
+female,native,0.8
+male,native,0.89
+female,Non-native,0.98
