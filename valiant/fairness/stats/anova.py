@@ -22,8 +22,8 @@ class StatsModel:
         """
         Create an instance of the :class:`StatsModel`
 
-        :param df: dataframe of dataset with independent and dependent variables
-        :param dep_var: dependent variable string. All other variables in dataframe are assumed
+        :param df: dataframe of dataset with independent and dependent variables.
+        :param dep_var: dependent variable string. All other variables in dataframe are assumed.
          to be independent variables
         """
 
@@ -36,24 +36,9 @@ class StatsModel:
         """
         Runs the anova analysis, as well as checking for model assumption violations
 
-    	Parameters
-    	----------
-    	print_output : boolean
-    	    Prints the dataframe results of the ANOVA analysis. Default is True.
-    	scale : float
-    	    Estimate of variance, If None, will be estimated from the largest
-    	    model. Default is None.
-    	test : str {"F", "Chisq", "Cp"} or None
-    	    Test statistics to provide. Default is "F".
-    	ss_type : str or int {"I","II","III"} or {1,2,3}
-            The type of Anova test to perform. Default is 2
-    	robust : {None, "hc0", "hc1", "hc2", "hc3"}
-    	    Use heteroscedasticity-corrected coefficient covariance matrix.
-    	    If robust covariance is desired, it is recommended to use `hc3`.
+        :param print_output: prints the dataframe results of the ANOVA analysis. Default is True.
 
-    	Returns
-    	----------
-        anova_df : dataframe containing sum of squares, test statistic, and P-value
+        :return anova_df: dataframe containing sum of squares, test statistic, and p-value.
         """
 
         self.print_output = print_output
