@@ -43,7 +43,9 @@ Supported Machine Learning Libraries
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Modules
+
+    modules/
 
 
 
