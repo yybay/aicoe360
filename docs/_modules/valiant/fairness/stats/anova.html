@@ -80,8 +80,13 @@
               
             
             
-              <!-- Local TOC -->
-              <div class="local-toc"></div>
+              <p class="caption"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/fairness.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/fairness/stats.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness.stats</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/fairness/stats/anova.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness.stats.anova</span></code></a></li>
+</ul>
+
             
           
         </div>
@@ -168,8 +173,8 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create an instance of the :class:`StatsModel`</span>
 
-<span class="sd">        :param df: dataframe of dataset with independent and dependent variables.</span>
-<span class="sd">        :param dep_var: dependent variable string. All other variables in dataframe are assumed.</span>
+<span class="sd">        :param df: dataframe of dataset with independent and dependent variables</span>
+<span class="sd">        :param dep_var: dependent variable string. All other variables in dataframe are assumed</span>
 <span class="sd">         to be independent variables</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -182,9 +187,24 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Runs the anova analysis, as well as checking for model assumption violations</span>
 
-<span class="sd">        :param print_output: prints the dataframe results of the ANOVA analysis. Default is True.</span>
+<span class="sd">    	Parameters</span>
+<span class="sd">    	----------</span>
+<span class="sd">    	print_output : boolean</span>
+<span class="sd">    	    Prints the dataframe results of the ANOVA analysis. Default is True.</span>
+<span class="sd">    	scale : float</span>
+<span class="sd">    	    Estimate of variance, If None, will be estimated from the largest</span>
+<span class="sd">    	    model. Default is None.</span>
+<span class="sd">    	test : str {&quot;F&quot;, &quot;Chisq&quot;, &quot;Cp&quot;} or None</span>
+<span class="sd">    	    Test statistics to provide. Default is &quot;F&quot;.</span>
+<span class="sd">    	ss_type : str or int {&quot;I&quot;,&quot;II&quot;,&quot;III&quot;} or {1,2,3}</span>
+<span class="sd">            The type of Anova test to perform. Default is 2</span>
+<span class="sd">    	robust : {None, &quot;hc0&quot;, &quot;hc1&quot;, &quot;hc2&quot;, &quot;hc3&quot;}</span>
+<span class="sd">    	    Use heteroscedasticity-corrected coefficient covariance matrix.</span>
+<span class="sd">    	    If robust covariance is desired, it is recommended to use `hc3`.</span>
 
-<span class="sd">        :return anova_df: dataframe containing sum of squares, test statistic, and p-value.</span>
+<span class="sd">    	Returns</span>
+<span class="sd">    	----------</span>
+<span class="sd">        anova_df : dataframe containing sum of squares, test statistic, and P-value</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">print_output</span> <span class="o">=</span> <span class="n">print_output</span>

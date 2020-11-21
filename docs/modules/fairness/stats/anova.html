@@ -35,7 +35,8 @@
 
     
     <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" /> 
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="prev" title="valiant.fairness.stats" href="../stats.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -80,14 +81,16 @@
               
             
             
-              <!-- Local TOC -->
-              <div class="local-toc"><ul>
-<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness.stats.anova</span></code></a><ul>
-<li><a class="reference internal" href="#base-class-stats">Base Class Stats</a></li>
+              <p class="caption"><span class="caption-text">Modules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../fairness.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stats.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness.stats</span></code></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness.stats.anova</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#base-class-stats">Base Class Stats</a></li>
 </ul>
 </li>
 </ul>
-</div>
+
             
           
         </div>
@@ -166,14 +169,21 @@ violations</p>
 <dt id="valiant.fairness.stats.anova.StatsModel.anova">
 <code class="sig-name descname">anova</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">print_output</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/valiant/fairness/stats/anova.html#StatsModel.anova"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#valiant.fairness.stats.anova.StatsModel.anova" title="Permalink to this definition">¶</a></dt>
 <dd><p>Runs the anova analysis, as well as checking for model assumption violations</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>print_output</strong> – prints the dataframe results of the ANOVA analysis. Default is True.</p>
+<dl class="simple">
+<dt>print_output<span class="classifier">boolean</span></dt><dd><p>Prints the dataframe results of the ANOVA analysis. Default is True.</p>
 </dd>
-<dt class="field-even">Return anova_df</dt>
-<dd class="field-even"><p>dataframe containing sum of squares, test statistic, and p-value.</p>
+<dt>scale<span class="classifier">float</span></dt><dd><p>Estimate of variance, If None, will be estimated from the largest
+model. Default is None.</p>
+</dd>
+<dt>test<span class="classifier">str {“F”, “Chisq”, “Cp”} or None</span></dt><dd><p>Test statistics to provide. Default is “F”.</p>
+</dd>
+<dt>ss_type<span class="classifier">str or int {“I”,”II”,”III”} or {1,2,3}</span></dt><dd><p>The type of Anova test to perform. Default is 2</p>
+</dd>
+<dt>robust<span class="classifier">{None, “hc0”, “hc1”, “hc2”, “hc3”}</span></dt><dd><p>Use heteroscedasticity-corrected coefficient covariance matrix.
+If robust covariance is desired, it is recommended to use <cite>hc3</cite>.</p>
 </dd>
 </dl>
+<p>anova_df : dataframe containing sum of squares, test statistic, and P-value</p>
 </dd></dl>
 
 </dd></dl>
@@ -186,6 +196,13 @@ violations</p>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../stats.html" class="btn btn-neutral float-left" title="valiant.fairness.stats" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

@@ -45,8 +45,9 @@ Supported Machine Learning Libraries
    :maxdepth: 2
    :caption: Modules
 
-    modules/
-
+   modules/fairness
+   modules/fairness/stats
+   modules/fairness/stats/anova
 
 
 Indices and tables
