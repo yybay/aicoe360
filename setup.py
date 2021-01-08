@@ -19,7 +19,7 @@ setup_args = dict(
     keywords=['AICOE', 'MDD', 'Explainability', 'fairness assessment', ],
     url='https://github.com/yybay/python-package'
 #    zip_safe=False,
-#    download_url='https://pypi.org/project/elastictools/',
+#    download_url='https://pypi.org/project/elastictools/'
 )
 
 install_requires = [
