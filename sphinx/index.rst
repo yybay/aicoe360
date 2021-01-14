@@ -6,7 +6,7 @@
 Welcome to the Validation Analysis Toolkit!
 ===========================================
 
-Validation Analysis Toolkit (VALIANT) is a Python library for model varlidation purposes. VALIANT provides tools that enable
+Validation Analysis Toolkit (VALIANT) is a Python library for model validation purposes. VALIANT provides tools that enable
 developers and researchers to evaluate, defend, certify and verify Machine Learning models and applications through explainability,
 fairness assessments, and also against adversarial threats. VALIANT supports all popular machine learning
 frameworks (TensorFlow, Keras, PyTorch, MXNet, scikit-learn, XGBoost, LightGBM, CatBoost, GPy, etc.), all data types
