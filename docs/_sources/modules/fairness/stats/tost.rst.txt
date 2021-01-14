@@ -1,0 +1,8 @@
+:mod:`valiant.fairness.stats.tost`
+===================================
+.. automodule:: valiant.fairness.stats.tost
+
+Base Class Stats
+------------------
+.. autoclass:: StatsModel
+   :members:
