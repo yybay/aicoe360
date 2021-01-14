@@ -15,18 +15,18 @@ setup_args = dict(
     license='MIT',
     packages=find_packages(),
     author='Yong Yi Bay',
-    author_email='yongyibay@gmail.com',
+    author_email='yongyi.bay@wellsfargo.com',
     keywords=['AICOE', 'MDD', 'Explainability', 'fairness assessment', ],
-    url='https://github.com/yybay/python-package'
+    url='https://github.wellsfargo.com/NonApp-AdvancedAnalyticsLab/Valiant'
 #    zip_safe=False,
 #    download_url='https://pypi.org/project/elastictools/'
 )
 
 install_requires = [
-    'numpy>=1.18.0,<1.19.1',
-    'scipy>=1.4.0',
-    'pandas>=0.24.0',
-    'statsmodels>=0.10.0'
+    'numpy>=1.18.0,<1.19.1'
+#    'scipy>=1.4.0',
+#    'pandas>=0.24.0',
+#    'statsmodels>=0.10.0'
 ]
 
 if __name__ == '__main__':

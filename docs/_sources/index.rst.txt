@@ -24,7 +24,7 @@ certification, etc.).
   :alt: ART Logo
   :align: center
 
-The code of ART is on `GitHub`_ and the Wiki contains overviews of implemented explainability, fairness, and sensitivity assessments.
+The code of VALIANT is on `GitHub`_ and the Wiki contains overviews of implemented explainability, fairness, and sensitivity assessments.
 
 The library is under continuous development. Feedback, bug reports and contributions are very welcome!
 
@@ -57,4 +57,4 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 
-.. _Github: https://github.com/yybay/test
+.. _Github: https://github.wellsfargo.com/NonApp-AdvancedAnalyticsLab/Valiant
