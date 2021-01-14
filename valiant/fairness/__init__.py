@@ -4,10 +4,10 @@ The Validation Analysis Toolkit (VALIANT).
 
 # Project Imports
 from valiant.fairness import stats
-from valiant.fairness import metrics
+#from valiant.fairness import metrics
 
 
-from valiant.fairness.stats.anova import StatsModel
+from valiant.fairness.stats import Anova
 
 # Semantic Version
 __version__ = "0.0.1"

@@ -1,7 +1,6 @@
 :mod:`valiant.fairness.stats.anova`
 ===================================
 .. automodule:: valiant.fairness.stats.anova
-.. automodule:: valiant.fairness.stats.tost
 
 Base Class Stats
 ------------------

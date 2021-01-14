@@ -36,7 +36,6 @@
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="valiant.fairness.stats.anova" href="stats/anova.html" />
     <link rel="prev" title="valiant.fairness" href="../fairness.html" /> 
 </head>
 
@@ -85,8 +84,10 @@
               <p class="caption"><span class="caption-text">Modules</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../fairness.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness</span></code></a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness.stats</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="stats/anova.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness.stats.anova</span></code></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness.stats</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#base-class-stats">Base Class Stats</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -154,6 +155,39 @@
             
   <div class="section" id="module-valiant.fairness.stats">
 <span id="valiant-fairness-stats"></span><h1><a class="reference internal" href="#module-valiant.fairness.stats" title="valiant.fairness.stats"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness.stats</span></code></a><a class="headerlink" href="#module-valiant.fairness.stats" title="Permalink to this headline">¶</a></h1>
+<p>This module wraps statistical modules and automatically delivers the p-value, test statistic,
+with its associated model assumptions.</p>
+<div class="section" id="base-class-stats">
+<h2>Base Class Stats<a class="headerlink" href="#base-class-stats" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="valiant.fairness.stats.Anova">
+<em class="property">class </em><code class="sig-prename descclassname">valiant.fairness.stats.</code><code class="sig-name descname">Anova</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">df</span></em>, <em class="sig-param"><span class="n">dep_var</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/valiant/fairness/stats.html#Anova"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#valiant.fairness.stats.Anova" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implementation of a suite of statistical models with automated checks for assumption
+violations</p>
+<dl class="py method">
+<dt id="valiant.fairness.stats.Anova.anova">
+<code class="sig-name descname">anova</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">print_output</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/valiant/fairness/stats.html#Anova.anova"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#valiant.fairness.stats.Anova.anova" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs the anova analysis, as well as checking for model assumption violations</p>
+<dl class="simple">
+<dt>print_output<span class="classifier">boolean</span></dt><dd><p>Prints the dataframe results of the ANOVA analysis. Default is True.</p>
+</dd>
+<dt>scale<span class="classifier">float</span></dt><dd><p>Estimate of variance, If None, will be estimated from the largest
+model. Default is None.</p>
+</dd>
+<dt>test<span class="classifier">str {“F”, “Chisq”, “Cp”} or None</span></dt><dd><p>Test statistics to provide. Default is “F”.</p>
+</dd>
+<dt>ss_type<span class="classifier">str or int {“I”,”II”,”III”} or {1,2,3}</span></dt><dd><p>The type of Anova test to perform. Default is 2</p>
+</dd>
+<dt>robust<span class="classifier">{None, “hc0”, “hc1”, “hc2”, “hc3”}</span></dt><dd><p>Use heteroscedasticity-corrected coefficient covariance matrix.
+If robust covariance is desired, it is recommended to use <cite>hc3</cite>.</p>
+</dd>
+</dl>
+<p>anova_df : dataframe containing sum of squares, test statistic, and P-value</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 </div>
 
 
@@ -163,8 +197,6 @@
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="stats/anova.html" class="btn btn-neutral float-right" title="valiant.fairness.stats.anova" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../fairness.html" class="btn btn-neutral float-left" title="valiant.fairness" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

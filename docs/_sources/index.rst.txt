@@ -47,7 +47,6 @@ Supported Machine Learning Libraries
 
    modules/fairness
    modules/fairness/stats
-   modules/fairness/stats/anova
 
 
 Indices and tables
