@@ -22,8 +22,8 @@ class StatsModel:
         """
         Create an instance of the :class:`StatsModel`
 
-        :param df: dataframe of dataset with independent and dependent variables.
-        :param dep_var: dependent variable string. All other variables in dataframe are assumed.
+        :param df: dataframe of dataset with independent and dependent variables
+        :param dep_var: dependent variable string. All other variables in dataframe are assumed
          to be independent variables
         """
 
@@ -36,9 +36,24 @@ class StatsModel:
         """
         Runs the anova analysis, as well as checking for model assumption violations
 
-        :param print_output: prints the dataframe results of the ANOVA analysis. Default is True.
+    	Parameters
+    	----------
+    	print_output : boolean
+    	    Prints the dataframe results of the ANOVA analysis. Default is True.
+    	scale : float
+    	    Estimate of variance, If None, will be estimated from the largest
+    	    model. Default is None.
+    	test : str {"F", "Chisq", "Cp"} or None
+    	    Test statistics to provide. Default is "F".
+    	ss_type : str or int {"I","II","III"} or {1,2,3}
+            The type of Anova test to perform. Default is 2
+    	robust : {None, "hc0", "hc1", "hc2", "hc3"}
+    	    Use heteroscedasticity-corrected coefficient covariance matrix.
+    	    If robust covariance is desired, it is recommended to use `hc3`.
 
-        :return anova_df: dataframe containing sum of squares, test statistic, and p-value.
+    	Returns
+    	----------
+        anova_df : dataframe containing sum of squares, test statistic, and P-value
         """
 
         self.print_output = print_output
@@ -81,7 +96,7 @@ class StatsModel:
         # ANOVA
         anova_df = sm.stats.anova_lm(self.ols_model, typ=ss_type, robust=robust, test=test, scale=scale)
 
-        if self.print_output==True: print('\n ---------------\n', 'ANOVA analysis', '\n ---------------'),\
+        if self.print_output==True: print(' ---------------\n', 'ANOVA analysis', '\n ---------------'),\
                                     print(anova_df,'\n')
 
         self._anova_assumptions(cl)
@@ -95,7 +110,7 @@ class StatsModel:
 
         temp = np.zeros((4, 1+len(self.indep_var)))
 
-        index = ['model residual']
+        index = [self.dep_var]
 
         # Experimental errors are normally distributed
         temp[0,0], temp[1,0] = ss.shapiro(self.ols_model.resid)
@@ -121,6 +136,6 @@ class StatsModel:
 
         self.anova_assump_df = pd.DataFrame(temp, index=arrays, columns=index)
 
-        if self.print_output==True: print('\n ------------------\n', 'ANOVA assumptions', '\n ------------------'),\
+        if self.print_output==True: print(' ------------------\n', 'ANOVA assumptions', '\n ------------------'),\
                                     print(self.anova_assump_df, '\n')
         return
