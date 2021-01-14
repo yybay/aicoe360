@@ -187,6 +187,43 @@ If robust covariance is desired, it is recommended to use <cite>hc3</cite>.</p>
 
 </dd></dl>
 
+<dl class="py class">
+<dt id="valiant.fairness.stats.Tost">
+<em class="property">class </em><code class="sig-prename descclassname">valiant.fairness.stats.</code><code class="sig-name descname">Tost</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">df</span></em>, <em class="sig-param"><span class="n">dep_var</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/valiant/fairness/stats.html#Tost"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#valiant.fairness.stats.Tost" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implementation of a suite of statistical models with automated checks for assumption
+violations</p>
+<dl class="py method">
+<dt id="valiant.fairness.stats.Tost.tost">
+<code class="sig-name descname">tost</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">print_output</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/valiant/fairness/stats.html#Tost.tost"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#valiant.fairness.stats.Tost.tost" title="Permalink to this definition">¶</a></dt>
+<dd><p>The two-one-sided t-test is a test of (non-)equivalence for two independent samples</p>
+<p>TOST: two one-sided t tests</p>
+<p>null hypothesis: m1 - m2 &lt; low or m1 - m2 &gt; upp alternative hypothesis: low &lt; m1 - m2 &lt; upp</p>
+<p>where m1, m2 are the means, expected values of the two samples.</p>
+<p>If the pvalue is smaller than a threshold, say 0.05, then we reject the hypothesis that the difference between the two samples is larger than the the thresholds given by low and upp.</p>
+<dl class="simple">
+<dt>print_output<span class="classifier">boolean</span></dt><dd><p>Prints the dataframe results of the ANOVA analysis. Default is True.</p>
+</dd>
+<dt>low, upp<span class="classifier">float</span></dt><dd><p>Equivalence interval low &lt; m1 - m2 &lt; upp</p>
+</dd>
+<dt>usevar<span class="classifier">str {‘pooled’ or ‘unequal’}</span></dt><dd><p>If ‘pooled’, then the standard deviation of the samples is assumed to be the same.
+If ‘unequal’, then Welsh ttest with Satterthwait degrees of freedom is used.</p>
+</dd>
+<dt>weights<span class="classifier">tuple of None or ndarrays</span></dt><dd><p>Case weights for the two samples. Default is None</p>
+</dd>
+<dt>transform<span class="classifier">None or function</span></dt><dd><p>If None (default), then the data is not transformed.
+Given a function, sample data and thresholds are transformed. If transform is log, then the equivalence interval is in ratio: low &lt; m1 / m2 &lt; upp</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>tost_df<span class="classifier">dataframe</span></dt><dd><p>pvalue (float): pvalue of the non-equivalence test
+t1, pv1 (tuple of floats): test statistic and pvalue for lower threshold test
+t2, pv2 (tuple of floats): test statistic and pvalue for upper threshold test</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 </div>
 

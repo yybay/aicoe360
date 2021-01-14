@@ -12,6 +12,68 @@ import scipy.stats as ss
 import numpy as np
 
 
+class Tost:
+    """
+    Implementation of a suite of statistical models with automated checks for assumption
+    violations
+    """
+
+    def __init__(self, df, dep_var):
+        """
+        Create an instance of the :class:`StatsModel`
+
+        :param df: dataframe of dataset with independent and dependent variables
+        :param dep_var: dependent variable string. All other variables in dataframe are assumed
+         to be independent variables
+        """
+
+        self.df = df.copy()
+        self.indep_var = [x for x in df.columns if dep_var not in x]
+        self.dep_var = dep_var
+
+
+    def tost(self, print_output=True, **kwargs):
+        """
+        The two-one-sided t-test is a test of (non-)equivalence for two independent samples
+
+        TOST: two one-sided t tests
+
+        null hypothesis: m1 - m2 < low or m1 - m2 > upp alternative hypothesis: low < m1 - m2 < upp
+
+        where m1, m2 are the means, expected values of the two samples.
+
+        If the pvalue is smaller than a threshold, say 0.05, then we reject the hypothesis that the difference between the two samples is larger than the the thresholds given by low and upp.
+
+
+    	Parameters
+    	----------
+    	print_output : boolean
+    	    Prints the dataframe results of the ANOVA analysis. Default is True.
+    	low, upp : float
+    	    Equivalence interval low < m1 - m2 < upp
+    	usevar : str {'pooled' or 'unequal'}
+    	    If 'pooled', then the standard deviation of the samples is assumed to be the same.
+            If 'unequal', then Welsh ttest with Satterthwait degrees of freedom is used.
+    	weights : tuple of None or ndarrays
+            Case weights for the two samples. Default is None
+    	transform : None or function
+    	    If None (default), then the data is not transformed.
+            Given a function, sample data and thresholds are transformed. If transform is log, then the equivalence interval is in ratio: low < m1 / m2 < upp
+
+    	Returns
+    	----------
+        tost_df : dataframe
+            pvalue (float): pvalue of the non-equivalence test
+            t1, pv1 (tuple of floats): test statistic and pvalue for lower threshold test
+            t2, pv2 (tuple of floats): test statistic and pvalue for upper threshold test
+        """
+
+        self.print_output = print_output
+#        self.tost_df = self._tost_analysis(**kwargs)
+#
+#        return self.tost_df
+
+
 class Anova:
     """
     Implementation of a suite of statistical models with automated checks for assumption

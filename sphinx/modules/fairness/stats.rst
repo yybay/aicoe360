@@ -6,3 +6,5 @@ Base Class Stats
 ------------------
 .. autoclass:: Anova
    :members:
+.. autoclass:: Tost
+   :members:
