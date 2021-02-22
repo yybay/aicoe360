@@ -243,29 +243,21 @@ violations</p>
 <li><p><strong>low</strong> (<em>float</em>) – Equivalence interval low &lt; m1 - m2 &lt; upp</p></li>
 <li><p><strong>upp</strong> (<em>float</em>) – Equivalence interval low &lt; m1 - m2 &lt; upp</p></li>
 <li><p><strong>print_output</strong> (<em>boolean</em><em>, </em><em>optional</em>) – Prints the dataframe results of the ANOVA analysis. Default is True</p></li>
-<li><p><strong>usevar</strong> (<em>string</em><em>, </em><em>optional</em>) – <p>‘pooled’ or ‘unequal’</p>
-<ul>
+<li><p><strong>usevar</strong> (<em>string</em><em>, </em><em>optional</em>) – <ul>
 <li><p>If ‘pooled’, then the standard deviation of the samples is assumed to be the same</p></li>
 <li><p>If ‘unequal’, then Welsh ttest with Satterthwait degrees of freedom is used</p></li>
 </ul>
 </p></li>
 <li><p><strong>weights</strong> (<em>tuples of None</em><em> or </em><em>ndarrays</em><em>, </em><em>optional</em>) – Case weights for the two samples. Default is None</p></li>
-<li><p><strong>transform</strong> (<em>None</em><em> or </em><em>function</em><em>, </em><em>optional</em>) – <p>transformation function</p>
-<ul>
-<li><p>If None (default), then the data is not transformed</p></li>
-<li><p>Given a function, sample data and thresholds are transformed. If transform is log, then the equivalence interval is in ratio: low &lt; m1 / m2 &lt; upp</p></li>
+<li><p><strong>transform</strong> (<em>None</em><em> or </em><em>function</em><em>, </em><em>optional</em>) – <ul>
+<li><p>If <cite>None</cite> (default), then the data is not transformed</p></li>
+<li><p>If given a <cite>function</cite>, sample data and thresholds are transformed. If transform is log, then the equivalence interval is in ratio: low &lt; m1 / m2 &lt; upp</p></li>
 </ul>
 </p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><p><strong>Dataframe</strong> with the following fields:</p>
-<ul class="simple">
-<li><p>pvalue (float): pvalue of the non-equivalence test</p></li>
-<li><p>t1, pv1 (tuple of floats): test statistic and pvalue for lower threshold test</p></li>
-<li><p>t2, pv2 (tuple of floats): test statistic and pvalue for upper threshold test</p></li>
-</ul>
-</p>
+<dd class="field-even"><p><strong>Dataframe</strong> with pvalue of equivalence test, test statistic and pvalue for lower/upper threshold test</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>pandas dataframe</p>
