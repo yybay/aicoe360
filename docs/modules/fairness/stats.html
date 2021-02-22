@@ -250,22 +250,23 @@ to be independent variables</p></li>
 <p>null hypothesis: m1 - m2 &lt; low or m1 - m2 &gt; upp alternative hypothesis: low &lt; m1 - m2 &lt; upp</p>
 <p>where m1, m2 are the means, expected values of the two samples.</p>
 <p>If the pvalue is smaller than a threshold, say 0.05, then we reject the hypothesis that the difference between the two samples is larger than the the thresholds given by low and upp.</p>
-<dl class="simple">
-<dt>print_output<span class="classifier">boolean</span></dt><dd><p>Prints the dataframe results of the ANOVA analysis. Default is True.</p>
-</dd>
-<dt>low, upp<span class="classifier">float</span></dt><dd><p>Equivalence interval low &lt; m1 - m2 &lt; upp</p>
-</dd>
-<dt>usevar<span class="classifier">str {‘pooled’ or ‘unequal’}</span></dt><dd><p>If ‘pooled’, then the standard deviation of the samples is assumed to be the same.
-If ‘unequal’, then Welsh ttest with Satterthwait degrees of freedom is used.</p>
-</dd>
-<dt>weights<span class="classifier">tuple of None or ndarrays</span></dt><dd><p>Case weights for the two samples. Default is None</p>
-</dd>
-<dt>transform<span class="classifier">None or function</span></dt><dd><p>If None (default), then the data is not transformed.
-Given a function, sample data and thresholds are transformed. If transform is log, then the equivalence interval is in ratio: low &lt; m1 / m2 &lt; upp</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>print_output</strong> – Prints the dataframe results of the ANOVA analysis. Default is True.</p></li>
+<li><p><strong>upp</strong> (<em>low</em><em>,</em>) – Equivalence interval low &lt; m1 - m2 &lt; upp</p></li>
+<li><p><strong>usevar</strong> – str {‘pooled’ or ‘unequal’}
+If ‘pooled’, then the standard deviation of the samples is assumed to be the same.
+If ‘unequal’, then Welsh ttest with Satterthwait degrees of freedom is used.</p></li>
+<li><p><strong>weights</strong> – Case weights for the two samples. Default is None</p></li>
+<li><p><strong>transform</strong> – None or function
+If None (default), then the data is not transformed.
+Given a function, sample data and thresholds are transformed. If transform is log, then the equivalence interval is in ratio: low &lt; m1 / m2 &lt; upp</p></li>
+</ul>
 </dd>
 </dl>
 <dl class="simple">
-<dt>tost_df<span class="classifier">dataframe</span></dt><dd><p>pvalue (float): pvalue of the non-equivalence test
+<dt>return: dataframe with the following fields</dt><dd><p>pvalue (float): pvalue of the non-equivalence test
 t1, pv1 (tuple of floats): test statistic and pvalue for lower threshold test
 t2, pv2 (tuple of floats): test statistic and pvalue for upper threshold test</p>
 </dd>
