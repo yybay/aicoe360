@@ -168,11 +168,11 @@
 
 <div class="viewcode-block" id="Tost"><a class="viewcode-back" href="../../../modules/fairness/stats.html#valiant.fairness.stats.Tost">[docs]</a><span class="k">class</span> <span class="nc">Tost</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Implementation of a suite of statistical models with automated checks for assumption</span>
+<span class="sd">    Implementation of TOST with automated checks for assumption</span>
 <span class="sd">    violations</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Tost.__init__"><a class="viewcode-back" href="../../../modules/fairness/stats.html#valiant.fairness.stats.Tost.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dep_var</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dep_var</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create an instance of the :class:`StatsModel`</span>
 
@@ -183,7 +183,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">indep_var</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">dep_var</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dep_var</span> <span class="o">=</span> <span class="n">dep_var</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dep_var</span> <span class="o">=</span> <span class="n">dep_var</span>
 
 
 <div class="viewcode-block" id="Tost.tost"><a class="viewcode-back" href="../../../modules/fairness/stats.html#valiant.fairness.stats.Tost.tost">[docs]</a>    <span class="k">def</span> <span class="nf">tost</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">print_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -200,23 +200,27 @@
 
 <span class="sd">    	Parameters</span>
 <span class="sd">    	-----------</span>
-<span class="sd">    	:param print_output: Prints the dataframe results of the ANOVA analysis. Default is True.</span>
+<span class="sd">    	:param print_output: Prints the dataframe results of the ANOVA analysis. Default is True</span>
+<span class="sd">        :type print_output: Boolean</span>
 <span class="sd">        :param low, upp: Equivalence interval low &lt; m1 - m2 &lt; upp</span>
-<span class="sd">        :param usevar: str {&#39;pooled&#39; or &#39;unequal&#39;}</span>
-<span class="sd">            |  If &#39;pooled&#39;, then the standard deviation of the samples is assumed to be the same.</span>
-<span class="sd">            |  If &#39;unequal&#39;, then Welsh ttest with Satterthwait degrees of freedom is used.</span>
-<span class="sd">        :param weights:</span>
-<span class="sd">            Case weights for the two samples. Default is None</span>
-<span class="sd">        :param transform: None or function</span>
-<span class="sd">    	    |  If None (default), then the data is not transformed.</span>
-<span class="sd">            |  Given a function, sample data and thresholds are transformed. If transform is log, then the equivalence interval is in ratio: low &lt; m1 / m2 &lt; upp</span>
+<span class="sd">        :type low, upp: float</span>
+<span class="sd">        :param usevar: &#39;pooled&#39; or &#39;unequal&#39; \n</span>
+<span class="sd">            If &#39;pooled&#39;, then the standard deviation of the samples is assumed to be the same\n</span>
+<span class="sd">            If &#39;unequal&#39;, then Welsh ttest with Satterthwait degrees of freedom is used</span>
+<span class="sd">        :type usevar: string</span>
+<span class="sd">        :param weights: Case weights for the two samples. Default is None</span>
+<span class="sd">        :type weights: tuples of None or ndarrays</span>
+<span class="sd">        :param transform: If None (default), then the data is not transformed \n</span>
+<span class="sd">            Given a function, sample data and thresholds are transformed. If transform is log, then the equivalence interval is in ratio: low &lt; m1 / m2 &lt; upp</span>
+<span class="sd">        :type transform: None or function</span>
 
 <span class="sd">    	Returns</span>
 <span class="sd">    	--------</span>
-<span class="sd">        :return: dataframe with the following fields</span>
-<span class="sd">            |  pvalue (float): pvalue of the non-equivalence test</span>
-<span class="sd">            |  t1, pv1 (tuple of floats): test statistic and pvalue for lower threshold test</span>
-<span class="sd">            |  t2, pv2 (tuple of floats): test statistic and pvalue for upper threshold test</span>
+<span class="sd">        :return: dataframe with the following fields\n</span>
+<span class="sd">            pvalue (float): pvalue of the non-equivalence test \n</span>
+<span class="sd">            t1, pv1 (tuple of floats): test statistic and pvalue for lower threshold test \n</span>
+<span class="sd">            t2, pv2 (tuple of floats): test statistic and pvalue for upper threshold test</span>
+<span class="sd">        :rtype: pandas dataframe</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">print_output</span> <span class="o">=</span> <span class="n">print_output</span></div></div>
@@ -231,7 +235,7 @@
 <span class="sd">    violations</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Anova.__init__"><a class="viewcode-back" href="../../../modules/fairness/stats.html#valiant.fairness.stats.Anova.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dep_var</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dep_var</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create an instance of the :class:`StatsModel`</span>
 
@@ -242,7 +246,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">indep_var</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">dep_var</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dep_var</span> <span class="o">=</span> <span class="n">dep_var</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dep_var</span> <span class="o">=</span> <span class="n">dep_var</span>
 
 
 <div class="viewcode-block" id="Anova.anova"><a class="viewcode-back" href="../../../modules/fairness/stats.html#valiant.fairness.stats.Anova.anova">[docs]</a>    <span class="k">def</span> <span class="nf">anova</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">print_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
