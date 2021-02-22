@@ -49,20 +49,20 @@ class Tost:
     	:param print_output: Prints the dataframe results of the ANOVA analysis. Default is True.
         :param low, upp: Equivalence interval low < m1 - m2 < upp
         :param usevar: str {'pooled' or 'unequal'}
-            If 'pooled', then the standard deviation of the samples is assumed to be the same.
-            If 'unequal', then Welsh ttest with Satterthwait degrees of freedom is used.
+            |  If 'pooled', then the standard deviation of the samples is assumed to be the same.
+            |  If 'unequal', then Welsh ttest with Satterthwait degrees of freedom is used.
         :param weights:
             Case weights for the two samples. Default is None
         :param transform: None or function
-    	    If None (default), then the data is not transformed.
-            Given a function, sample data and thresholds are transformed. If transform is log, then the equivalence interval is in ratio: low < m1 / m2 < upp
+    	    |  If None (default), then the data is not transformed.
+            |  Given a function, sample data and thresholds are transformed. If transform is log, then the equivalence interval is in ratio: low < m1 / m2 < upp
 
     	Returns
-    	----------
-        return: dataframe with the following fields
-            pvalue (float): pvalue of the non-equivalence test
-            t1, pv1 (tuple of floats): test statistic and pvalue for lower threshold test
-            t2, pv2 (tuple of floats): test statistic and pvalue for upper threshold test
+    	--------
+        :return: dataframe with the following fields
+            |  pvalue (float): pvalue of the non-equivalence test
+            |  t1, pv1 (tuple of floats): test statistic and pvalue for lower threshold test
+            |  t2, pv2 (tuple of floats): test statistic and pvalue for upper threshold test
         """
 
         self.print_output = print_output

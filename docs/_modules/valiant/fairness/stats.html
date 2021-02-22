@@ -203,20 +203,20 @@
 <span class="sd">    	:param print_output: Prints the dataframe results of the ANOVA analysis. Default is True.</span>
 <span class="sd">        :param low, upp: Equivalence interval low &lt; m1 - m2 &lt; upp</span>
 <span class="sd">        :param usevar: str {&#39;pooled&#39; or &#39;unequal&#39;}</span>
-<span class="sd">            If &#39;pooled&#39;, then the standard deviation of the samples is assumed to be the same.</span>
-<span class="sd">            If &#39;unequal&#39;, then Welsh ttest with Satterthwait degrees of freedom is used.</span>
+<span class="sd">            |  If &#39;pooled&#39;, then the standard deviation of the samples is assumed to be the same.</span>
+<span class="sd">            |  If &#39;unequal&#39;, then Welsh ttest with Satterthwait degrees of freedom is used.</span>
 <span class="sd">        :param weights:</span>
 <span class="sd">            Case weights for the two samples. Default is None</span>
 <span class="sd">        :param transform: None or function</span>
-<span class="sd">    	    If None (default), then the data is not transformed.</span>
-<span class="sd">            Given a function, sample data and thresholds are transformed. If transform is log, then the equivalence interval is in ratio: low &lt; m1 / m2 &lt; upp</span>
+<span class="sd">    	    |  If None (default), then the data is not transformed.</span>
+<span class="sd">            |  Given a function, sample data and thresholds are transformed. If transform is log, then the equivalence interval is in ratio: low &lt; m1 / m2 &lt; upp</span>
 
 <span class="sd">    	Returns</span>
-<span class="sd">    	----------</span>
-<span class="sd">        return: dataframe with the following fields</span>
-<span class="sd">            pvalue (float): pvalue of the non-equivalence test</span>
-<span class="sd">            t1, pv1 (tuple of floats): test statistic and pvalue for lower threshold test</span>
-<span class="sd">            t2, pv2 (tuple of floats): test statistic and pvalue for upper threshold test</span>
+<span class="sd">    	--------</span>
+<span class="sd">        :return: dataframe with the following fields</span>
+<span class="sd">            |  pvalue (float): pvalue of the non-equivalence test</span>
+<span class="sd">            |  t1, pv1 (tuple of floats): test statistic and pvalue for lower threshold test</span>
+<span class="sd">            |  t2, pv2 (tuple of floats): test statistic and pvalue for upper threshold test</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">print_output</span> <span class="o">=</span> <span class="n">print_output</span></div></div>
