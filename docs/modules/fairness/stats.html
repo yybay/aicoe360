@@ -202,7 +202,7 @@ If robust covariance is desired, it is recommended to use <cite>hc3</cite>.</p>
 violations</p>
 <dl class="py method">
 <dt id="valiant.fairness.stats.Tost.tost">
-<code class="sig-name descname">tost</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">print_output</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/valiant/fairness/stats.html#Tost.tost"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#valiant.fairness.stats.Tost.tost" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">tost</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">low</span></em>, <em class="sig-param"><span class="n">upp</span></em>, <em class="sig-param"><span class="n">print_output</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/valiant/fairness/stats.html#Tost.tost"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#valiant.fairness.stats.Tost.tost" title="Permalink to this definition">¶</a></dt>
 <dd><p>The two-one-sided t-test is a test of (non-)equivalence for two independent samples</p>
 <p>TOST: two one-sided t tests</p>
 <p>null hypothesis: m1 - m2 &lt; low or m1 - m2 &gt; upp alternative hypothesis: low &lt; m1 - m2 &lt; upp</p>
@@ -211,8 +211,9 @@ violations</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
+<li><p><strong>low</strong> (<em>float</em>) – Equivalence interval low &lt; m1 - m2 &lt; upp</p></li>
+<li><p><strong>upp</strong> (<em>float</em>) – Equivalence interval low &lt; m1 - m2 &lt; upp</p></li>
 <li><p><strong>print_output</strong> (<em>Boolean</em><em>, </em><em>optional</em>) – Prints the dataframe results of the ANOVA analysis. Default is True</p></li>
-<li><p><strong>upp</strong> (<em>low</em><em>,</em>) – Equivalence interval low &lt; m1 - m2 &lt; upp</p></li>
 <li><p><strong>usevar</strong> (<em>string</em><em>, </em><em>optional</em>) – ‘pooled’ or ‘unequal’
 - If ‘pooled’, then the standard deviation of the samples is assumed to be the same
 - If ‘unequal’, then Welsh ttest with Satterthwait degrees of freedom is used</p></li>

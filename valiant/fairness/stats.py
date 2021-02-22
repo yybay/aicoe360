@@ -33,7 +33,7 @@ class Tost:
         self.dep_var = dep_var
 
 
-    def tost(self, print_output=True, **kwargs):
+    def tost(self, low, upp, print_output=True, **kwargs):
         """
         The two-one-sided t-test is a test of (non-)equivalence for two independent samples
 
@@ -45,10 +45,12 @@ class Tost:
 
         If the pvalue is smaller than a threshold, say 0.05, then we reject the hypothesis that the difference between the two samples is larger than the the thresholds given by low and upp.
 
+        :param low: Equivalence interval low < m1 - m2 < upp
+        :type low: float
+        :param upp: Equivalence interval low < m1 - m2 < upp
+        :type upp: float
         :param print_output: Prints the dataframe results of the ANOVA analysis. Default is True
         :type print_output: Boolean, optional
-        :param low, upp: Equivalence interval low < m1 - m2 < upp
-        :type low, upp: float, optional
         :param usevar: 'pooled' or 'unequal'
             - If 'pooled', then the standard deviation of the samples is assumed to be the same
             - If 'unequal', then Welsh ttest with Satterthwait degrees of freedom is used

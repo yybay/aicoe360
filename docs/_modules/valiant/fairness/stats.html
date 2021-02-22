@@ -187,7 +187,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">dep_var</span> <span class="o">=</span> <span class="n">dep_var</span>
 
 
-<div class="viewcode-block" id="Tost.tost"><a class="viewcode-back" href="../../../modules/fairness/stats.html#valiant.fairness.stats.Tost.tost">[docs]</a>    <span class="k">def</span> <span class="nf">tost</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">print_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Tost.tost"><a class="viewcode-back" href="../../../modules/fairness/stats.html#valiant.fairness.stats.Tost.tost">[docs]</a>    <span class="k">def</span> <span class="nf">tost</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">upp</span><span class="p">,</span> <span class="n">print_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The two-one-sided t-test is a test of (non-)equivalence for two independent samples</span>
 
@@ -199,10 +199,12 @@
 
 <span class="sd">        If the pvalue is smaller than a threshold, say 0.05, then we reject the hypothesis that the difference between the two samples is larger than the the thresholds given by low and upp.</span>
 
+<span class="sd">        :param low: Equivalence interval low &lt; m1 - m2 &lt; upp</span>
+<span class="sd">        :type low: float</span>
+<span class="sd">        :param upp: Equivalence interval low &lt; m1 - m2 &lt; upp</span>
+<span class="sd">        :type upp: float</span>
 <span class="sd">        :param print_output: Prints the dataframe results of the ANOVA analysis. Default is True</span>
 <span class="sd">        :type print_output: Boolean, optional</span>
-<span class="sd">        :param low, upp: Equivalence interval low &lt; m1 - m2 &lt; upp</span>
-<span class="sd">        :type low, upp: float, optional</span>
 <span class="sd">        :param usevar: &#39;pooled&#39; or &#39;unequal&#39;</span>
 <span class="sd">            - If &#39;pooled&#39;, then the standard deviation of the samples is assumed to be the same</span>
 <span class="sd">            - If &#39;unequal&#39;, then Welsh ttest with Satterthwait degrees of freedom is used</span>
