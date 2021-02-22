@@ -34,7 +34,7 @@ class Tost:
 
 
     def tost(self, low, upp, print_output=True, **kwargs):
-        r"""
+        """
         The two-one-sided t-test is a test of (non-)equivalence for two independent samples
 
         TOST: two one-sided t tests
@@ -50,18 +50,18 @@ class Tost:
         :param upp: Equivalence interval low < m1 - m2 < upp
         :type upp: float
         :param print_output: Prints the dataframe results of the ANOVA analysis. Default is True
-        :type print_output: Boolean, optional
-        :param usevar: 'pooled' or 'unequal'\n
-            - If 'pooled', then the standard deviation of the samples is assumed to be the same\n
+        :type print_output: boolean, optional
+        :param usevar: 'pooled' or 'unequal' \n
+            - If 'pooled', then the standard deviation of the samples is assumed to be the same \n
             - If 'unequal', then Welsh ttest with Satterthwait degrees of freedom is used
         :type usevar: string, optional
         :param weights: Case weights for the two samples. Default is None
         :type weights: tuples of None or ndarrays, optional
-        :param transform: transformation function\n
-            - If None (default), then the data is not transformed\n
+        :param transform: transformation function \n
+            - If None (default), then the data is not transformed \n
             - Given a function, sample data and thresholds are transformed. If transform is log, then the equivalence interval is in ratio: low < m1 / m2 < upp
         :type transform: None or function, optional
-        :return: Dataframe with the following fields: \n
+        :return: **Dataframe** with the following fields: \n
                 - pvalue (float): pvalue of the non-equivalence test \n
                 - t1, pv1 (tuple of floats): test statistic and pvalue for lower threshold test \n
                 - t2, pv2 (tuple of floats): test statistic and pvalue for upper threshold test
