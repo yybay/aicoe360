@@ -216,7 +216,6 @@
 <span class="sd">            - If given a `function`, sample data and thresholds are transformed. If transform is log, then the equivalence interval is in ratio: low &lt; m1 / m2 &lt; upp</span>
 <span class="sd">        :type transform: None or function, optional</span>
 <span class="sd">        :return: **Dataframe** with pvalue of equivalence test, test statistic and pvalue for lower/upper threshold test</span>
-<span class="sd">        :rtype: pandas dataframe</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">print_output</span> <span class="o">=</span> <span class="n">print_output</span></div></div>
@@ -236,8 +235,10 @@
 <span class="sd">        Create an instance of the :class:`StatsModel`</span>
 
 <span class="sd">        :param df: dataframe of dataset with independent and dependent variables</span>
+<span class="sd">        :type df: pandas dataframe</span>
 <span class="sd">        :param dep_var: dependent variable string. All other variables in dataframe are assumed</span>
 <span class="sd">         to be independent variables</span>
+<span class="sd">        :type dep_var: string</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -249,24 +250,20 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Runs the anova analysis, as well as checking for model assumption violations</span>
 
-<span class="sd">    	Parameters</span>
-<span class="sd">    	----------</span>
-<span class="sd">    	print_output : boolean</span>
-<span class="sd">    	    Prints the dataframe results of the ANOVA analysis. Default is True.</span>
-<span class="sd">    	scale : float</span>
-<span class="sd">    	    Estimate of variance, If None, will be estimated from the largest</span>
-<span class="sd">    	    model. Default is None.</span>
-<span class="sd">    	test : str {&quot;F&quot;, &quot;Chisq&quot;, &quot;Cp&quot;} or None</span>
-<span class="sd">    	    Test statistics to provide. Default is &quot;F&quot;.</span>
-<span class="sd">    	ss_type : str or int {&quot;I&quot;,&quot;II&quot;,&quot;III&quot;} or {1,2,3}</span>
-<span class="sd">            The type of Anova test to perform. Default is 2</span>
-<span class="sd">    	robust : {None, &quot;hc0&quot;, &quot;hc1&quot;, &quot;hc2&quot;, &quot;hc3&quot;}</span>
-<span class="sd">    	    Use heteroscedasticity-corrected coefficient covariance matrix.</span>
+<span class="sd">        :param print_output: Prints the dataframe results of the ANOVA analysis. Default is True.</span>
+<span class="sd">        :type print_output: boolean, optional</span>
+<span class="sd">    	:param scale: Estimate of variance, If `None`, will be estimated from the largest</span>
+<span class="sd">    	    model. Default is `None`.</span>
+<span class="sd">        :type scale: float</span>
+<span class="sd">        :param test: &quot;F&quot;, &quot;Chisq&quot;, &quot;Cp&quot; or `None`. Test statistics to provide. Default is &quot;F&quot;.</span>
+<span class="sd">        :type test: string</span>
+<span class="sd">        :param ss_type: {&quot;I&quot;,&quot;II&quot;,&quot;III&quot;} or {1,2,3}. The type of Anova test to perform. Default is `2`</span>
+<span class="sd">        :type ss_type: string or int</span>
+<span class="sd">        :param robust: {None, &quot;hc0&quot;, &quot;hc1&quot;, &quot;hc2&quot;, &quot;hc3&quot;}.</span>
+<span class="sd">            Use heteroscedasticity-corrected coefficient covariance matrix.</span>
 <span class="sd">    	    If robust covariance is desired, it is recommended to use `hc3`.</span>
-
-<span class="sd">    	Returns</span>
-<span class="sd">    	----------</span>
-<span class="sd">        anova_df : dataframe containing sum of squares, test statistic, and P-value</span>
+<span class="sd">        :type robust: string</span>
+<span class="sd">        :return: **Dataframe** containing sum of squares, test statistic, and p-value</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">print_output</span> <span class="o">=</span> <span class="n">print_output</span>

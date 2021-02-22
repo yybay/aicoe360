@@ -62,7 +62,6 @@ class Tost:
             - If given a `function`, sample data and thresholds are transformed. If transform is log, then the equivalence interval is in ratio: low < m1 / m2 < upp
         :type transform: None or function, optional
         :return: **Dataframe** with pvalue of equivalence test, test statistic and pvalue for lower/upper threshold test
-        :rtype: pandas dataframe
         """
 
         self.print_output = print_output
@@ -82,8 +81,10 @@ class Anova:
         Create an instance of the :class:`StatsModel`
 
         :param df: dataframe of dataset with independent and dependent variables
+        :type df: pandas dataframe
         :param dep_var: dependent variable string. All other variables in dataframe are assumed
          to be independent variables
+        :type dep_var: string
         """
 
         self.df = df.copy()
@@ -95,24 +96,20 @@ class Anova:
         """
         Runs the anova analysis, as well as checking for model assumption violations
 
-    	Parameters
-    	----------
-    	print_output : boolean
-    	    Prints the dataframe results of the ANOVA analysis. Default is True.
-    	scale : float
-    	    Estimate of variance, If None, will be estimated from the largest
-    	    model. Default is None.
-    	test : str {"F", "Chisq", "Cp"} or None
-    	    Test statistics to provide. Default is "F".
-    	ss_type : str or int {"I","II","III"} or {1,2,3}
-            The type of Anova test to perform. Default is 2
-    	robust : {None, "hc0", "hc1", "hc2", "hc3"}
-    	    Use heteroscedasticity-corrected coefficient covariance matrix.
+        :param print_output: Prints the dataframe results of the ANOVA analysis. Default is True.
+        :type print_output: boolean, optional
+    	:param scale: Estimate of variance, If `None`, will be estimated from the largest
+    	    model. Default is `None`.
+        :type scale: float
+        :param test: "F", "Chisq", "Cp" or `None`. Test statistics to provide. Default is "F".
+        :type test: string
+        :param ss_type: {"I","II","III"} or {1,2,3}. The type of Anova test to perform. Default is `2`
+        :type ss_type: string or int
+        :param robust: {None, "hc0", "hc1", "hc2", "hc3"}.
+            Use heteroscedasticity-corrected coefficient covariance matrix.
     	    If robust covariance is desired, it is recommended to use `hc3`.
-
-    	Returns
-    	----------
-        anova_df : dataframe containing sum of squares, test statistic, and P-value
+        :type robust: string
+        :return: **Dataframe** containing sum of squares, test statistic, and p-value
         """
 
         self.print_output = print_output
