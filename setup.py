@@ -23,7 +23,8 @@ setup_args = dict(
 )
 
 install_requires = [
-    'numpy>=1.18.0,<1.19.1'
+    'numpy>=1.18.0'
+#    'numpy>=1.18.0,<1.19.1'
 #    'scipy>=1.4.0',
 #    'pandas>=0.24.0',
 #    'statsmodels>=0.10.0'
