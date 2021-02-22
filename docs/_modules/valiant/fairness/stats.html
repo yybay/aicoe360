@@ -177,8 +177,9 @@
 <span class="sd">        Create an instance of the :class:`StatsModel`</span>
 
 <span class="sd">        :param df: dataframe of dataset with independent and dependent variables</span>
-<span class="sd">        :param dep_var: dependent variable string. All other variables in dataframe are assumed</span>
-<span class="sd">         to be independent variables</span>
+<span class="sd">        :type df: pandas dataframe</span>
+<span class="sd">        :param dep_var: dependent variable string. All other variables in dataframe are assumed to be independent variables</span>
+<span class="sd">        :type dep_var: string</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -198,28 +199,24 @@
 
 <span class="sd">        If the pvalue is smaller than a threshold, say 0.05, then we reject the hypothesis that the difference between the two samples is larger than the the thresholds given by low and upp.</span>
 
-<span class="sd">    	Parameters</span>
-<span class="sd">    	-----------</span>
-<span class="sd">    	:param print_output: Prints the dataframe results of the ANOVA analysis. Default is True</span>
-<span class="sd">        :type print_output: Boolean</span>
+<span class="sd">        :param print_output: Prints the dataframe results of the ANOVA analysis. Default is True</span>
+<span class="sd">        :type print_output: Boolean, optional</span>
 <span class="sd">        :param low, upp: Equivalence interval low &lt; m1 - m2 &lt; upp</span>
-<span class="sd">        :type low, upp: float</span>
-<span class="sd">        :param usevar: &#39;pooled&#39; or &#39;unequal&#39; \n</span>
-<span class="sd">            If &#39;pooled&#39;, then the standard deviation of the samples is assumed to be the same\n</span>
-<span class="sd">            If &#39;unequal&#39;, then Welsh ttest with Satterthwait degrees of freedom is used</span>
-<span class="sd">        :type usevar: string</span>
+<span class="sd">        :type low, upp: float, optional</span>
+<span class="sd">        :param usevar: &#39;pooled&#39; or &#39;unequal&#39;</span>
+<span class="sd">            - If &#39;pooled&#39;, then the standard deviation of the samples is assumed to be the same</span>
+<span class="sd">            - If &#39;unequal&#39;, then Welsh ttest with Satterthwait degrees of freedom is used</span>
+<span class="sd">        :type usevar: string, optional</span>
 <span class="sd">        :param weights: Case weights for the two samples. Default is None</span>
-<span class="sd">        :type weights: tuples of None or ndarrays</span>
-<span class="sd">        :param transform: If None (default), then the data is not transformed \n</span>
-<span class="sd">            Given a function, sample data and thresholds are transformed. If transform is log, then the equivalence interval is in ratio: low &lt; m1 / m2 &lt; upp</span>
-<span class="sd">        :type transform: None or function</span>
-
-<span class="sd">    	Returns</span>
-<span class="sd">    	--------</span>
-<span class="sd">        :return: dataframe with the following fields\n</span>
-<span class="sd">            pvalue (float): pvalue of the non-equivalence test \n</span>
-<span class="sd">            t1, pv1 (tuple of floats): test statistic and pvalue for lower threshold test \n</span>
-<span class="sd">            t2, pv2 (tuple of floats): test statistic and pvalue for upper threshold test</span>
+<span class="sd">        :type weights: tuples of None or ndarrays, optional</span>
+<span class="sd">        :param transform: transformation function</span>
+<span class="sd">            - If None (default), then the data is not transformed</span>
+<span class="sd">            - Given a function, sample data and thresholds are transformed. If transform is log, then the equivalence interval is in ratio: low &lt; m1 / m2 &lt; upp</span>
+<span class="sd">        :type transform: None or function, optional</span>
+<span class="sd">        :return: Dataframe with the following fields:</span>
+<span class="sd">            - pvalue (float): pvalue of the non-equivalence test</span>
+<span class="sd">            - t1, pv1 (tuple of floats): test statistic and pvalue for lower threshold test</span>
+<span class="sd">            - t2, pv2 (tuple of floats): test statistic and pvalue for upper threshold test</span>
 <span class="sd">        :rtype: pandas dataframe</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
