@@ -205,9 +205,9 @@
 <span class="sd">        :type upp: float</span>
 <span class="sd">        :param print_output: Prints the dataframe results of the ANOVA analysis. Default is True</span>
 <span class="sd">        :type print_output: boolean, optional</span>
-<span class="sd">        :param usevar: \n</span>
-<span class="sd">            - If `pooled`, then the standard deviation of the samples is assumed to be the same \n</span>
-<span class="sd">            - If `unequal`, then Welsh ttest with Satterthwait degrees of freedom is used</span>
+<span class="sd">        :param usevar: {&quot;pooled&quot;, &quot;unequal&quot;}</span>
+<span class="sd">            If `pooled`, then the standard deviation of the samples is assumed to be the same.</span>
+<span class="sd">            If `unequal`, then Welsh ttest with Satterthwait degrees of freedom is used</span>
 <span class="sd">        :type usevar: string, optional</span>
 <span class="sd">        :param weights: Case weights for the two samples. Default is None</span>
 <span class="sd">        :type weights: tuples of None or ndarrays, optional</span>
@@ -255,9 +255,9 @@
 <span class="sd">    	:param scale: Estimate of variance, If `None`, will be estimated from the largest</span>
 <span class="sd">    	    model. Default is `None`.</span>
 <span class="sd">        :type scale: float</span>
-<span class="sd">        :param test: &quot;F&quot;, &quot;Chisq&quot;, &quot;Cp&quot; or `None`. Test statistics to provide. Default is &quot;F&quot;.</span>
+<span class="sd">        :param test: {None, &quot;F&quot;, &quot;Chisq&quot;, &quot;Cp&quot;}. Test statistics to provide. Default is &quot;F&quot;.</span>
 <span class="sd">        :type test: string</span>
-<span class="sd">        :param ss_type: {&quot;I&quot;,&quot;II&quot;,&quot;III&quot;} or {1,2,3}. The type of Anova test to perform. Default is `2`</span>
+<span class="sd">        :param ss_type: {&quot;I&quot;, &quot;II&quot;, &quot;III&quot;} or {1, 2, 3}. The type of Anova test to perform. Default is `2`</span>
 <span class="sd">        :type ss_type: string or int</span>
 <span class="sd">        :param robust: {None, &quot;hc0&quot;, &quot;hc1&quot;, &quot;hc2&quot;, &quot;hc3&quot;}.</span>
 <span class="sd">            Use heteroscedasticity-corrected coefficient covariance matrix.</span>

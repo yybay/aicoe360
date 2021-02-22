@@ -51,9 +51,9 @@ class Tost:
         :type upp: float
         :param print_output: Prints the dataframe results of the ANOVA analysis. Default is True
         :type print_output: boolean, optional
-        :param usevar: \n
-            - If `pooled`, then the standard deviation of the samples is assumed to be the same \n
-            - If `unequal`, then Welsh ttest with Satterthwait degrees of freedom is used
+        :param usevar: {"pooled", "unequal"}
+            If `pooled`, then the standard deviation of the samples is assumed to be the same.
+            If `unequal`, then Welsh ttest with Satterthwait degrees of freedom is used
         :type usevar: string, optional
         :param weights: Case weights for the two samples. Default is None
         :type weights: tuples of None or ndarrays, optional
@@ -101,9 +101,9 @@ class Anova:
     	:param scale: Estimate of variance, If `None`, will be estimated from the largest
     	    model. Default is `None`.
         :type scale: float
-        :param test: "F", "Chisq", "Cp" or `None`. Test statistics to provide. Default is "F".
+        :param test: {None, "F", "Chisq", "Cp"}. Test statistics to provide. Default is "F".
         :type test: string
-        :param ss_type: {"I","II","III"} or {1,2,3}. The type of Anova test to perform. Default is `2`
+        :param ss_type: {"I", "II", "III"} or {1, 2, 3}. The type of Anova test to perform. Default is `2`
         :type ss_type: string or int
         :param robust: {None, "hc0", "hc1", "hc2", "hc3"}.
             Use heteroscedasticity-corrected coefficient covariance matrix.

@@ -194,8 +194,8 @@ to be independent variables</p></li>
 <li><p><strong>print_output</strong> (<em>boolean</em><em>, </em><em>optional</em>) – Prints the dataframe results of the ANOVA analysis. Default is True.</p></li>
 <li><p><strong>scale</strong> (<em>float</em>) – Estimate of variance, If <cite>None</cite>, will be estimated from the largest
 model. Default is <cite>None</cite>.</p></li>
-<li><p><strong>test</strong> (<em>string</em>) – “F”, “Chisq”, “Cp” or <cite>None</cite>. Test statistics to provide. Default is “F”.</p></li>
-<li><p><strong>ss_type</strong> (<em>string</em><em> or </em><em>int</em>) – {“I”,”II”,”III”} or {1,2,3}. The type of Anova test to perform. Default is <cite>2</cite></p></li>
+<li><p><strong>test</strong> (<em>string</em>) – {None, “F”, “Chisq”, “Cp”}. Test statistics to provide. Default is “F”.</p></li>
+<li><p><strong>ss_type</strong> (<em>string</em><em> or </em><em>int</em>) – {“I”, “II”, “III”} or {1, 2, 3}. The type of Anova test to perform. Default is <cite>2</cite></p></li>
 <li><p><strong>robust</strong> (<em>string</em>) – {None, “hc0”, “hc1”, “hc2”, “hc3”}.
 Use heteroscedasticity-corrected coefficient covariance matrix.
 If robust covariance is desired, it is recommended to use <cite>hc3</cite>.</p></li>
@@ -245,11 +245,9 @@ violations</p>
 <li><p><strong>low</strong> (<em>float</em>) – Equivalence interval low &lt; m1 - m2 &lt; upp</p></li>
 <li><p><strong>upp</strong> (<em>float</em>) – Equivalence interval low &lt; m1 - m2 &lt; upp</p></li>
 <li><p><strong>print_output</strong> (<em>boolean</em><em>, </em><em>optional</em>) – Prints the dataframe results of the ANOVA analysis. Default is True</p></li>
-<li><p><strong>usevar</strong> (<em>string</em><em>, </em><em>optional</em>) – <ul>
-<li><p>If <cite>pooled</cite>, then the standard deviation of the samples is assumed to be the same</p></li>
-<li><p>If <cite>unequal</cite>, then Welsh ttest with Satterthwait degrees of freedom is used</p></li>
-</ul>
-</p></li>
+<li><p><strong>usevar</strong> (<em>string</em><em>, </em><em>optional</em>) – {“pooled”, “unequal”}
+If <cite>pooled</cite>, then the standard deviation of the samples is assumed to be the same.
+If <cite>unequal</cite>, then Welsh ttest with Satterthwait degrees of freedom is used</p></li>
 <li><p><strong>weights</strong> (<em>tuples of None</em><em> or </em><em>ndarrays</em><em>, </em><em>optional</em>) – Case weights for the two samples. Default is None</p></li>
 <li><p><strong>transform</strong> (<em>None</em><em> or </em><em>function</em><em>, </em><em>optional</em>) – <ul>
 <li><p>If <cite>None</cite> (default), then the data is not transformed</p></li>
