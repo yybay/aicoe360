@@ -20,7 +20,7 @@ class Tost:
 
     def __init__(self, df, dep_var):
         """
-        Create an instance of the :class:`StatsModel`
+        Create an instance of the :class:`Tost`
 
         :param df: dataframe of dataset with independent and dependent variables
         :type df: pandas dataframe
@@ -78,7 +78,7 @@ class Anova:
 
     def __init__(self, df, dep_var):
         """
-        Create an instance of the :class:`StatsModel`
+        Create an instance of the :class:`Anova`
 
         :param df: dataframe of dataset with independent and dependent variables
         :type df: pandas dataframe

@@ -2,15 +2,15 @@
 ===================================
 .. automodule:: valiant.fairness.stats
 
-ANOVA
-------------------
+ANOVA (Analysis of Variance)
+-----------------------------
 .. autoclass:: Anova
    :members:
    :special-members:
    :exclude-members: __dict__,__weakref__
 
-Two one-sided T Tests
----------------------
+TOST (Two One-Sided T Tests)
+-----------------------------
 .. autoclass:: Tost
    :members:
    :special-members:

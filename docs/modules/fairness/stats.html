@@ -87,8 +87,8 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../fairness.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness</span></code></a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness.stats</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#anova">ANOVA</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#two-one-sided-t-tests">Two one-sided T Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#anova-analysis-of-variance">ANOVA (Analysis of Variance)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tost-two-one-sided-t-tests">TOST (Two One-Sided T Tests)</a></li>
 </ul>
 </li>
 </ul>
@@ -162,8 +162,8 @@
 <span id="valiant-fairness-stats"></span><h1><a class="reference internal" href="#module-valiant.fairness.stats" title="valiant.fairness.stats"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness.stats</span></code></a><a class="headerlink" href="#module-valiant.fairness.stats" title="Permalink to this headline">¶</a></h1>
 <p>This module wraps statistical modules and automatically delivers the p-value, test statistic,
 with its associated model assumptions.</p>
-<div class="section" id="anova">
-<h2>ANOVA<a class="headerlink" href="#anova" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="anova-analysis-of-variance">
+<h2>ANOVA (Analysis of Variance)<a class="headerlink" href="#anova-analysis-of-variance" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="valiant.fairness.stats.Anova">
 <em class="property">class </em><code class="sig-prename descclassname">valiant.fairness.stats.</code><code class="sig-name descname">Anova</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">df</span></em>, <em class="sig-param"><span class="n">dep_var</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/valiant/fairness/stats.html#Anova"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#valiant.fairness.stats.Anova" title="Permalink to this definition">¶</a></dt>
@@ -172,7 +172,7 @@ violations</p>
 <dl class="py method">
 <dt id="valiant.fairness.stats.Anova.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">df</span></em>, <em class="sig-param"><span class="n">dep_var</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/valiant/fairness/stats.html#Anova.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#valiant.fairness.stats.Anova.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create an instance of the <code class="xref py py-class docutils literal notranslate"><span class="pre">StatsModel</span></code></p>
+<dd><p>Create an instance of the <a class="reference internal" href="#valiant.fairness.stats.Anova" title="valiant.fairness.stats.Anova"><code class="xref py py-class docutils literal notranslate"><span class="pre">Anova</span></code></a></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -210,8 +210,8 @@ If robust covariance is desired, it is recommended to use <cite>hc3</cite>.</p><
 </dd></dl>
 
 </div>
-<div class="section" id="two-one-sided-t-tests">
-<h2>Two one-sided T Tests<a class="headerlink" href="#two-one-sided-t-tests" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="tost-two-one-sided-t-tests">
+<h2>TOST (Two One-Sided T Tests)<a class="headerlink" href="#tost-two-one-sided-t-tests" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="valiant.fairness.stats.Tost">
 <em class="property">class </em><code class="sig-prename descclassname">valiant.fairness.stats.</code><code class="sig-name descname">Tost</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">df</span></em>, <em class="sig-param"><span class="n">dep_var</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/valiant/fairness/stats.html#Tost"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#valiant.fairness.stats.Tost" title="Permalink to this definition">¶</a></dt>
@@ -220,7 +220,7 @@ violations</p>
 <dl class="py method">
 <dt id="valiant.fairness.stats.Tost.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">df</span></em>, <em class="sig-param"><span class="n">dep_var</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/valiant/fairness/stats.html#Tost.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#valiant.fairness.stats.Tost.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create an instance of the <code class="xref py py-class docutils literal notranslate"><span class="pre">StatsModel</span></code></p>
+<dd><p>Create an instance of the <a class="reference internal" href="#valiant.fairness.stats.Tost" title="valiant.fairness.stats.Tost"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tost</span></code></a></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
