@@ -24,7 +24,7 @@ class Tost:
 
         :param df: dataframe of dataset with independent and dependent variables
         :type df: pandas dataframe
-        :param dep_var: dependent variable string. All other variables in dataframe are assumed to be independent variables
+        :param dep_var: name of dependent variable column. All other variables in dataframe are assumed to be independent variables
         :type dep_var: string
         """
 
@@ -82,7 +82,7 @@ class Anova:
 
         :param df: dataframe of dataset with independent and dependent variables
         :type df: pandas dataframe
-        :param dep_var: dependent variable string. All other variables in dataframe are assumed
+        :param dep_var: name of dependent variable column. All other variables in dataframe are assumed to be independent variables
          to be independent variables
         :type dep_var: string
         """
