@@ -19,7 +19,7 @@ import valiant
 # -- Project information -----------------------------------------------------
 
 project = 'Valiant'
-copyright = '2020, Wells Fargo'
+copyright = '2021, Wells Fargo'
 author = 'Wells Fargo'
 
 # The full version, including alpha/beta/rc tags
