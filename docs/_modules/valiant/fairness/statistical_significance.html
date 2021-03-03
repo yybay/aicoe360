@@ -1,0 +1,398 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>valiant.fairness.statistical_significance &mdash; Valiant 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Valiant
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/fairness.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/fairness/samplers.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness.samplers</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/fairness/statistical_significance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness.statistical_significance</span></code></a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Valiant</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>valiant.fairness.statistical_significance</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for valiant.fairness.statistical_significance</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module wraps statistical modules and automatically delivers the p-value, test statistic,</span>
+<span class="sd">with its associated model assumptions.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1">#pylint: disable=C0103</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">from</span> <span class="nn">statsmodels.formula.api</span> <span class="kn">import</span> <span class="n">ols</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">ss</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<div class="viewcode-block" id="Tost"><a class="viewcode-back" href="../../../modules/fairness/statistical_significance.html#valiant.fairness.statistical_significance.Tost">[docs]</a><span class="k">class</span> <span class="nc">Tost</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Implementation of TOST with automated checks for assumption</span>
+<span class="sd">    violations</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Tost.__init__"><a class="viewcode-back" href="../../../modules/fairness/statistical_significance.html#valiant.fairness.statistical_significance.Tost.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dep_var</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create an instance of the :class:`Tost`</span>
+
+<span class="sd">        :param df: dataframe of dataset with independent and dependent variables</span>
+<span class="sd">        :type df: pandas dataframe</span>
+<span class="sd">        :param dep_var: name of dependent variable column. All other variables in dataframe are assumed to be independent variables</span>
+<span class="sd">        :type dep_var: string</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">indep_var</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">dep_var</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dep_var</span> <span class="o">=</span> <span class="n">dep_var</span></div>
+
+
+<div class="viewcode-block" id="Tost.tost"><a class="viewcode-back" href="../../../modules/fairness/statistical_significance.html#valiant.fairness.statistical_significance.Tost.tost">[docs]</a>    <span class="k">def</span> <span class="nf">tost</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">upp</span><span class="p">,</span> <span class="n">print_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The two-one-sided t-test is a test of (non-)equivalence for two independent samples</span>
+
+<span class="sd">        TOST: two one-sided t tests</span>
+
+<span class="sd">        null hypothesis: m1 - m2 &lt; low or m1 - m2 &gt; upp alternative hypothesis: low &lt; m1 - m2 &lt; upp</span>
+
+<span class="sd">        where m1, m2 are the means, expected values of the two samples.</span>
+
+<span class="sd">        If the pvalue is smaller than a threshold, say 0.05, then we reject the hypothesis that the difference between the two samples is larger than the the thresholds given by low and upp.</span>
+
+<span class="sd">        :param low: Equivalence interval low &lt; m1 - m2 &lt; upp</span>
+<span class="sd">        :type low: float</span>
+<span class="sd">        :param upp: Equivalence interval low &lt; m1 - m2 &lt; upp</span>
+<span class="sd">        :type upp: float</span>
+<span class="sd">        :param print_output: Prints the dataframe results of the ANOVA analysis. Default is True</span>
+<span class="sd">        :type print_output: boolean, optional</span>
+<span class="sd">        :param usevar: {&quot;pooled&quot;, &quot;unequal&quot;}</span>
+<span class="sd">            If `pooled`, then the standard deviation of the samples is assumed to be the same.</span>
+<span class="sd">            If `unequal`, then Welsh ttest with Satterthwait degrees of freedom is used</span>
+<span class="sd">        :type usevar: string, optional</span>
+<span class="sd">        :param weights: Case weights for the two samples. Default is None</span>
+<span class="sd">        :type weights: tuples of None or ndarrays, optional</span>
+<span class="sd">        :param transform: \n</span>
+<span class="sd">            - If `None` (default), then the data is not transformed \n</span>
+<span class="sd">            - If given a `function`, sample data and thresholds are transformed. If transform is log, then the equivalence interval is in ratio: low &lt; m1 / m2 &lt; upp</span>
+<span class="sd">        :type transform: None or function, optional</span>
+<span class="sd">        :return: **Dataframe** with pvalue of equivalence test, test statistic and pvalue for lower/upper threshold test</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">print_output</span> <span class="o">=</span> <span class="n">print_output</span></div></div>
+<span class="c1">#        self.tost_df = self._tost_analysis(**kwargs)</span>
+<span class="c1">#</span>
+<span class="c1">#        return self.tost_df</span>
+
+
+<div class="viewcode-block" id="Anova"><a class="viewcode-back" href="../../../modules/fairness/statistical_significance.html#valiant.fairness.statistical_significance.Anova">[docs]</a><span class="k">class</span> <span class="nc">Anova</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Implementation of a suite of statistical models with automated checks for assumption</span>
+<span class="sd">    violations</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Anova.__init__"><a class="viewcode-back" href="../../../modules/fairness/statistical_significance.html#valiant.fairness.statistical_significance.Anova.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dep_var</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create an instance of the :class:`Anova`</span>
+
+<span class="sd">        :param df: dataframe of dataset with independent and dependent variables</span>
+<span class="sd">        :type df: pandas dataframe</span>
+<span class="sd">        :param dep_var: name of dependent variable column. All other variables in dataframe are assumed to be independent variables</span>
+<span class="sd">         to be independent variables</span>
+<span class="sd">        :type dep_var: string</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">indep_var</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">dep_var</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dep_var</span> <span class="o">=</span> <span class="n">dep_var</span></div>
+
+
+<div class="viewcode-block" id="Anova.anova"><a class="viewcode-back" href="../../../modules/fairness/statistical_significance.html#valiant.fairness.statistical_significance.Anova.anova">[docs]</a>    <span class="k">def</span> <span class="nf">anova</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">print_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Runs the anova analysis, as well as checking for model assumption violations</span>
+
+<span class="sd">        :param print_output: Prints the dataframe results of the ANOVA analysis. Default is True.</span>
+<span class="sd">        :type print_output: boolean, optional</span>
+<span class="sd">    	:param scale: Estimate of variance, If `None`, will be estimated from the largest</span>
+<span class="sd">    	    model. Default is `None`.</span>
+<span class="sd">        :type scale: float</span>
+<span class="sd">        :param test: {None, &quot;F&quot;, &quot;Chisq&quot;, &quot;Cp&quot;}. Test statistics to provide. Default is &quot;F&quot;.</span>
+<span class="sd">        :type test: string</span>
+<span class="sd">        :param ss_type: {&quot;I&quot;, &quot;II&quot;, &quot;III&quot;} or {1, 2, 3}. The type of Anova test to perform. Default is `2`</span>
+<span class="sd">        :type ss_type: string or int</span>
+<span class="sd">        :param robust: {None, &quot;hc0&quot;, &quot;hc1&quot;, &quot;hc2&quot;, &quot;hc3&quot;}.</span>
+<span class="sd">            Use heteroscedasticity-corrected coefficient covariance matrix.</span>
+<span class="sd">    	    If robust covariance is desired, it is recommended to use `hc3`.</span>
+<span class="sd">        :type robust: string</span>
+<span class="sd">        :return: **Dataframe** containing sum of squares, test statistic, and p-value</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">print_output</span> <span class="o">=</span> <span class="n">print_output</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">anova_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_anova_analysis</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">anova_df</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_anova_analysis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+        <span class="c1"># Farm out optional arguments</span>
+        <span class="n">anova_type</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;anova_type&quot;</span><span class="p">,</span> <span class="s2">&quot;main&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">scale</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;scale&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">test</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="s2">&quot;F&quot;</span><span class="p">)</span>
+        <span class="n">ss_type</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ss_type&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">robust</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;robust&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">cl</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;cl&quot;</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">anova_type</span> <span class="o">==</span> <span class="s2">&quot;main&quot;</span><span class="p">:</span>
+            <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;+&#39;</span>
+        <span class="k">elif</span> <span class="n">anova_type</span> <span class="o">==</span> <span class="s2">&quot;interaction&quot;</span><span class="p">:</span>
+            <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;*&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Erroneous anova type: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">anova_type</span><span class="p">,</span>
+                    <span class="s2">&quot; Choose </span><span class="se">\&quot;</span><span class="s2">main</span><span class="se">\&quot;</span><span class="s2"> or </span><span class="se">\&quot;</span><span class="s2">interaction</span><span class="se">\&quot;</span><span class="s2">.&quot;</span> <span class="p">)</span>
+
+        <span class="c1"># Defining model type</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dep_var</span> <span class="o">+</span> <span class="s1">&#39; ~ &#39;</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indep_var</span><span class="p">)):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">+</span> <span class="s1">&#39;C(&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">indep_var</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span>
+
+                <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indep_var</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">+</span> <span class="n">symbol</span>
+
+        <span class="c1"># Ordinary least squares fit</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ols_model</span> <span class="o">=</span> <span class="n">ols</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+        <span class="c1"># ANOVA</span>
+        <span class="n">anova_df</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">anova_lm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ols_model</span><span class="p">,</span> <span class="n">typ</span><span class="o">=</span><span class="n">ss_type</span><span class="p">,</span> <span class="n">robust</span><span class="o">=</span><span class="n">robust</span><span class="p">,</span> <span class="n">test</span><span class="o">=</span><span class="n">test</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">print_output</span><span class="o">==</span><span class="kc">True</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; ---------------</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;ANOVA analysis&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> ---------------&#39;</span><span class="p">),</span>\
+                                    <span class="nb">print</span><span class="p">(</span><span class="n">anova_df</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_anova_assumptions</span><span class="p">(</span><span class="n">cl</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">anova_df</span>
+
+
+    <span class="k">def</span> <span class="nf">_anova_assumptions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cl</span><span class="p">):</span>
+        <span class="n">arrays</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;Normality (Shapiro-Wilk)&#39;</span><span class="p">,</span> <span class="s1">&#39;Normality (Shapiro-Wilk)&#39;</span><span class="p">,</span> <span class="s1">&#39;Variance&#39;</span><span class="p">,</span> <span class="s1">&#39;Variance&#39;</span><span class="p">],</span>
+                  <span class="p">[</span><span class="s1">&#39;test stats&#39;</span><span class="p">,</span> <span class="s1">&#39;p-value&#39;</span><span class="p">,</span> <span class="s1">&#39;test stats&#39;</span><span class="p">,</span> <span class="s1">&#39;p-value&#39;</span><span class="p">]]</span>
+
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indep_var</span><span class="p">)))</span>
+
+        <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">dep_var</span><span class="p">]</span>
+
+        <span class="c1"># Experimental errors are normally distributed</span>
+        <span class="n">temp</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">shapiro</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ols_model</span><span class="o">.</span><span class="n">resid</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">cl</span><span class="p">:</span> <span class="c1"># test for equal variances using Bartlett&#39;s test</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indep_var</span><span class="p">)):</span>
+                <span class="n">index</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indep_var</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="n">list_unique</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">indep_var</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+                <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">indep_var</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">==</span> <span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">accuracy</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">list_unique</span><span class="p">]</span>
+                <span class="n">temp</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">temp</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">bartlett</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+
+            <span class="n">arrays</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">arrays</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; (Bartlett)&#39;</span>
+            <span class="n">arrays</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">arrays</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; (Bartlett)&#39;</span>
+
+        <span class="k">else</span><span class="p">:</span> <span class="c1"># test for equal variances using Levene&#39;s test</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indep_var</span><span class="p">)):</span>
+                <span class="n">list_unique</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">indep_var</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+                <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">indep_var</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">==</span> <span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">accuracy</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">list_unique</span><span class="p">]</span>
+                <span class="n">temp</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">temp</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">levene</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+
+            <span class="n">arrays</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">arrays</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; (Levene)&#39;</span>
+            <span class="n">arrays</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">arrays</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; (Levene)&#39;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">anova_assump_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">arrays</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">print_output</span><span class="o">==</span><span class="kc">True</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; ------------------</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;ANOVA assumptions&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> ------------------&#39;</span><span class="p">),</span>\
+                                    <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">anova_assump_df</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">return</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Wells Fargo.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

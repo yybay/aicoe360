@@ -85,8 +85,8 @@
               <p class="caption"><span class="caption-text">Modules</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules/fairness.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules/fairness/stats.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness.samplers</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules/fairness/samplers.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness.stats</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/fairness/samplers.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness.samplers</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/fairness/statistical_significance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness.statistical_significance</span></code></a></li>
 </ul>
 
             
@@ -169,12 +169,12 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 
-<div class="viewcode-block" id="Balanced_sampling"><a class="viewcode-back" href="../../../modules/fairness/stats.html#valiant.fairness.samplers.Balanced_sampling">[docs]</a><span class="k">class</span> <span class="nc">Balanced_sampling</span><span class="p">:</span>
+<div class="viewcode-block" id="Balanced_sampling"><a class="viewcode-back" href="../../../modules/fairness/samplers.html#valiant.fairness.samplers.Balanced_sampling">[docs]</a><span class="k">class</span> <span class="nc">Balanced_sampling</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Implementation of balanced stratified random sampling from the population.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Balanced_sampling.__init__"><a class="viewcode-back" href="../../../modules/fairness/stats.html#valiant.fairness.samplers.Balanced_sampling.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dep_var</span><span class="p">):</span>
+<div class="viewcode-block" id="Balanced_sampling.__init__"><a class="viewcode-back" href="../../../modules/fairness/samplers.html#valiant.fairness.samplers.Balanced_sampling.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dep_var</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create an instance of the :class:`Balanced_sampling`</span>
 
@@ -189,7 +189,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">dep_var</span> <span class="o">=</span> <span class="n">dep_var</span></div>
 
 
-<div class="viewcode-block" id="Balanced_sampling.stratified_random_sampler"><a class="viewcode-back" href="../../../modules/fairness/stats.html#valiant.fairness.samplers.Balanced_sampling.stratified_random_sampler">[docs]</a>    <span class="k">def</span> <span class="nf">stratified_random_sampler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dist</span><span class="p">,</span> <span class="n">min_sample_size</span><span class="p">,</span> <span class="n">stratified_col</span><span class="p">,</span> <span class="n">balanced_col</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">write_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Balanced_sampling.stratified_random_sampler"><a class="viewcode-back" href="../../../modules/fairness/samplers.html#valiant.fairness.samplers.Balanced_sampling.stratified_random_sampler">[docs]</a>    <span class="k">def</span> <span class="nf">stratified_random_sampler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dist</span><span class="p">,</span> <span class="n">min_sample_size</span><span class="p">,</span> <span class="n">stratified_col</span><span class="p">,</span> <span class="n">balanced_col</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">write_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Produces a stratified random sample while keeping important features balanced</span>
 

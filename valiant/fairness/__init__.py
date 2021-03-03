@@ -3,13 +3,13 @@ The Validation Analysis Toolkit (VALIANT).
 """
 
 # Project Imports
-from valiant.fairness import stats
 from valiant.fairness import samplers
+from valiant.fairness import statistical_significance
 #from valiant.fairness import metrics
 
 
-from valiant.fairness.stats import Anova
-from valiant.fairness.stats import Tost
+from valiant.fairness.statistical_significance import Anova
+from valiant.fairness.statistical_significance import Tost
 from valiant.fairness.samplers import Balanced_sampling
 
 
