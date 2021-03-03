@@ -1,0 +1,266 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>valiant.fairness.samplers &mdash; Valiant 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Valiant
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/fairness.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/fairness/stats.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness.samplers</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/fairness/samplers.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness.stats</span></code></a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Valiant</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>valiant.fairness.samplers</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for valiant.fairness.samplers</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module builds sampling strategies that ensures balanced sampling across important</span>
+<span class="sd">key predictors, beyond the y-label.</span>
+
+<span class="sd">For instance, for a classifier that has protected classes (e.g. gender) as predictor(s),</span>
+<span class="sd">it is imperative that during the sampling process of train_test_split, there exists apprximately</span>
+<span class="sd">balanced numbers of males and females in both the train and test set, in order</span>
+<span class="sd">for the model to be reliable, trustworthy, and devoid of potential biases.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1">#pylint: disable=C0103</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<div class="viewcode-block" id="Balanced_sampling"><a class="viewcode-back" href="../../../modules/fairness/stats.html#valiant.fairness.samplers.Balanced_sampling">[docs]</a><span class="k">class</span> <span class="nc">Balanced_sampling</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Implementation of balanced stratified random sampling from the population.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Balanced_sampling.__init__"><a class="viewcode-back" href="../../../modules/fairness/stats.html#valiant.fairness.samplers.Balanced_sampling.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dep_var</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create an instance of the :class:`Balanced_sampling`</span>
+
+<span class="sd">        :param df: dataframe of dataset with independent and dependent variables</span>
+<span class="sd">        :type df: pandas.DataFrame</span>
+<span class="sd">        :param dep_var: name of dependent variable column. All other variables in dataframe are assumed to be independent variables</span>
+<span class="sd">        :type dep_var: string</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">indep_var</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">dep_var</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dep_var</span> <span class="o">=</span> <span class="n">dep_var</span></div>
+
+
+<div class="viewcode-block" id="Balanced_sampling.stratified_random_sampler"><a class="viewcode-back" href="../../../modules/fairness/stats.html#valiant.fairness.samplers.Balanced_sampling.stratified_random_sampler">[docs]</a>    <span class="k">def</span> <span class="nf">stratified_random_sampler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dist</span><span class="p">,</span> <span class="n">min_sample_size</span><span class="p">,</span> <span class="n">stratified_col</span><span class="p">,</span> <span class="n">balanced_col</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">write_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Produces a stratified random sample while keeping important features balanced</span>
+
+<span class="sd">        :param dist: dataframe that contains two columns. First column contains the categories, and second column contains the numbers in each category</span>
+<span class="sd">        :type dist: pandas.DataFrame</span>
+<span class="sd">        :param min_sample_size: minimum desired sample size</span>
+<span class="sd">        :type min_sample_size: int</span>
+<span class="sd">        :param statified_col: name of the column to be stratified in df</span>
+<span class="sd">        :type stratified_col: str</span>
+<span class="sd">        :param balanced_col: name of the column to be balanced in df</span>
+<span class="sd">        :type balanced_col: str, optional</span>
+<span class="sd">        :param write_output: outputs an excel file with the sampled data. Default is True</span>
+<span class="sd">        :type write_output: bool, optional</span>
+<span class="sd">        :return: `pandas.DataFrame` with the stratified random sample</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">dist</span> <span class="o">=</span> <span class="n">dist</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_sample_size</span> <span class="o">=</span> <span class="n">min_sample_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stratified_col</span> <span class="o">=</span> <span class="n">stratified_col</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">balanced_col</span> <span class="o">=</span> <span class="n">balanced_col</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write_output</span> <span class="o">=</span> <span class="n">write_output</span>
+        <span class="n">_stratified_random_sampling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">df_stratified_random_sample</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_stratified_random_sampling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Wells Fargo.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

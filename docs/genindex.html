@@ -85,7 +85,8 @@
               <p class="caption"><span class="caption-text">Modules</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="modules/fairness.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/fairness/stats.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness.stats</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/fairness/stats.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness.samplers</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/fairness/samplers.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness.stats</span></code></a></li>
 </ul>
 
             
@@ -157,7 +158,9 @@
 <div class="genindex-jumpbox">
  <a href="#_"><strong>_</strong></a>
  | <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
  | <a href="#M"><strong>M</strong></a>
+ | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
  | <a href="#V"><strong>V</strong></a>
  
@@ -165,10 +168,12 @@
 <h2 id="_">_</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/fairness/stats.html#valiant.fairness.stats.Anova.__init__">__init__() (valiant.fairness.stats.Anova method)</a>
+      <li><a href="modules/fairness/stats.html#valiant.fairness.samplers.Balanced_sampling.__init__">__init__() (valiant.fairness.samplers.Balanced_sampling method)</a>
 
       <ul>
-        <li><a href="modules/fairness/stats.html#valiant.fairness.stats.Tost.__init__">(valiant.fairness.stats.Tost method)</a>
+        <li><a href="modules/fairness/samplers.html#valiant.fairness.stats.Anova.__init__">(valiant.fairness.stats.Anova method)</a>
+</li>
+        <li><a href="modules/fairness/samplers.html#valiant.fairness.stats.Tost.__init__">(valiant.fairness.stats.Tost method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -177,11 +182,19 @@
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/fairness/stats.html#valiant.fairness.stats.Anova">Anova (class in valiant.fairness.stats)</a>
+      <li><a href="modules/fairness/samplers.html#valiant.fairness.stats.Anova">Anova (class in valiant.fairness.stats)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/fairness/stats.html#valiant.fairness.stats.Anova.anova">anova() (valiant.fairness.stats.Anova method)</a>
+      <li><a href="modules/fairness/samplers.html#valiant.fairness.stats.Anova.anova">anova() (valiant.fairness.stats.Anova method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/fairness/stats.html#valiant.fairness.samplers.Balanced_sampling">Balanced_sampling (class in valiant.fairness.samplers)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -195,20 +208,30 @@
       <ul>
         <li><a href="modules/fairness.html#module-valiant.fairness">valiant.fairness</a>
 </li>
-        <li><a href="modules/fairness/stats.html#module-valiant.fairness.stats">valiant.fairness.stats</a>
+        <li><a href="modules/fairness/stats.html#module-valiant.fairness.samplers">valiant.fairness.samplers</a>
+</li>
+        <li><a href="modules/fairness/samplers.html#module-valiant.fairness.stats">valiant.fairness.stats</a>
 </li>
       </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/fairness/stats.html#valiant.fairness.samplers.Balanced_sampling.stratified_random_sampler">stratified_random_sampler() (valiant.fairness.samplers.Balanced_sampling method)</a>
+</li>
   </ul></td>
 </tr></table>
 
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/fairness/stats.html#valiant.fairness.stats.Tost">Tost (class in valiant.fairness.stats)</a>
+      <li><a href="modules/fairness/samplers.html#valiant.fairness.stats.Tost">Tost (class in valiant.fairness.stats)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/fairness/stats.html#valiant.fairness.stats.Tost.tost">tost() (valiant.fairness.stats.Tost method)</a>
+      <li><a href="modules/fairness/samplers.html#valiant.fairness.stats.Tost.tost">tost() (valiant.fairness.stats.Tost method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -223,13 +246,20 @@
         <li><a href="modules/fairness.html#module-valiant.fairness">module</a>
 </li>
       </ul></li>
+      <li>
+    valiant.fairness.samplers
+
+      <ul>
+        <li><a href="modules/fairness/stats.html#module-valiant.fairness.samplers">module</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     valiant.fairness.stats
 
       <ul>
-        <li><a href="modules/fairness/stats.html#module-valiant.fairness.stats">module</a>
+        <li><a href="modules/fairness/samplers.html#module-valiant.fairness.stats">module</a>
 </li>
       </ul></li>
   </ul></td>
@@ -246,7 +276,7 @@
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2020, Wells Fargo.
+        &#169; Copyright 2021, Wells Fargo.
 
     </p>
   </div>

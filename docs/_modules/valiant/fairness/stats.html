@@ -85,7 +85,8 @@
               <p class="caption"><span class="caption-text">Modules</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules/fairness.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules/fairness/stats.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness.stats</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/fairness/stats.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness.samplers</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/fairness/samplers.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness.stats</span></code></a></li>
 </ul>
 
             
@@ -166,13 +167,13 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 
-<div class="viewcode-block" id="Tost"><a class="viewcode-back" href="../../../modules/fairness/stats.html#valiant.fairness.stats.Tost">[docs]</a><span class="k">class</span> <span class="nc">Tost</span><span class="p">:</span>
+<div class="viewcode-block" id="Tost"><a class="viewcode-back" href="../../../modules/fairness/samplers.html#valiant.fairness.stats.Tost">[docs]</a><span class="k">class</span> <span class="nc">Tost</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Implementation of TOST with automated checks for assumption</span>
 <span class="sd">    violations</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Tost.__init__"><a class="viewcode-back" href="../../../modules/fairness/stats.html#valiant.fairness.stats.Tost.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dep_var</span><span class="p">):</span>
+<div class="viewcode-block" id="Tost.__init__"><a class="viewcode-back" href="../../../modules/fairness/samplers.html#valiant.fairness.stats.Tost.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dep_var</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create an instance of the :class:`Tost`</span>
 
@@ -187,7 +188,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">dep_var</span> <span class="o">=</span> <span class="n">dep_var</span></div>
 
 
-<div class="viewcode-block" id="Tost.tost"><a class="viewcode-back" href="../../../modules/fairness/stats.html#valiant.fairness.stats.Tost.tost">[docs]</a>    <span class="k">def</span> <span class="nf">tost</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">upp</span><span class="p">,</span> <span class="n">print_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Tost.tost"><a class="viewcode-back" href="../../../modules/fairness/samplers.html#valiant.fairness.stats.Tost.tost">[docs]</a>    <span class="k">def</span> <span class="nf">tost</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">upp</span><span class="p">,</span> <span class="n">print_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The two-one-sided t-test is a test of (non-)equivalence for two independent samples</span>
 
@@ -224,13 +225,13 @@
 <span class="c1">#        return self.tost_df</span>
 
 
-<div class="viewcode-block" id="Anova"><a class="viewcode-back" href="../../../modules/fairness/stats.html#valiant.fairness.stats.Anova">[docs]</a><span class="k">class</span> <span class="nc">Anova</span><span class="p">:</span>
+<div class="viewcode-block" id="Anova"><a class="viewcode-back" href="../../../modules/fairness/samplers.html#valiant.fairness.stats.Anova">[docs]</a><span class="k">class</span> <span class="nc">Anova</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Implementation of a suite of statistical models with automated checks for assumption</span>
 <span class="sd">    violations</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Anova.__init__"><a class="viewcode-back" href="../../../modules/fairness/stats.html#valiant.fairness.stats.Anova.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dep_var</span><span class="p">):</span>
+<div class="viewcode-block" id="Anova.__init__"><a class="viewcode-back" href="../../../modules/fairness/samplers.html#valiant.fairness.stats.Anova.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dep_var</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create an instance of the :class:`Anova`</span>
 
@@ -246,7 +247,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">dep_var</span> <span class="o">=</span> <span class="n">dep_var</span></div>
 
 
-<div class="viewcode-block" id="Anova.anova"><a class="viewcode-back" href="../../../modules/fairness/stats.html#valiant.fairness.stats.Anova.anova">[docs]</a>    <span class="k">def</span> <span class="nf">anova</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">print_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Anova.anova"><a class="viewcode-back" href="../../../modules/fairness/samplers.html#valiant.fairness.stats.Anova.anova">[docs]</a>    <span class="k">def</span> <span class="nf">anova</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">print_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Runs the anova analysis, as well as checking for model assumption violations</span>
 
@@ -360,7 +361,7 @@
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2020, Wells Fargo.
+        &#169; Copyright 2021, Wells Fargo.
 
     </p>
   </div>

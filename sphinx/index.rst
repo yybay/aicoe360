@@ -47,6 +47,7 @@ Supported Machine Learning Libraries
 
    modules/fairness
    modules/fairness/stats
+   modules/fairness/samplers
 
 
 Indices and tables
