@@ -20,7 +20,7 @@ help:
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 github:
-	@pip3 install /home/yongyi/Desktop/test
+	@pip3 install --user ../
 	@make html
 	@cp -a _build/html/. ../docs
 	@rm -rf _build
