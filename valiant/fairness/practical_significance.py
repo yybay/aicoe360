@@ -41,7 +41,7 @@ class Disparate_Impact:
         :type dep_var: string
         :param ind_var: independent variable name in dataframe
         :type ind_var: string
-        :return: boolean to show whether ratio violates the four-fifths rule. If True, its :math:`< 80%`. If False, its :math:`\geq 80%`
+        :return: boolean to show whether ratio violates the four-fifths rule. If True, its :math:`< 80\%`. If False, its :math:`\geq 80\%`
         :type: bool
         :return: ratio of rate of favorable outcome for the minority group to that of the majority group
         :type: float
