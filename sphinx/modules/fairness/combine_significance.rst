@@ -1,10 +1,10 @@
-:mod:`valiant.fairness.statistical_significance`
+:mod:`valiant.fairness.combine_significance`
 =================================================
-.. automodule:: valiant.fairness.statistical_significance
+.. automodule:: valiant.fairness.combine_significance
 
-ANOVA (Analysis of Variance)
+TOST (Two One-Sided T Tests)
 -----------------------------
-.. autoclass:: Anova
+.. autoclass:: Tost
    :members:
    :special-members:
    :exclude-members: __dict__,__weakref__

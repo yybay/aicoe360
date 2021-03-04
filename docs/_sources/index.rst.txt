@@ -48,6 +48,8 @@ Supported Machine Learning Libraries
    modules/fairness
    modules/fairness/samplers
    modules/fairness/statistical_significance
+   modules/fairness/practical_significance
+   modules/fairness/combine_significance
 
 
 Indices and tables

@@ -87,6 +87,8 @@
 <li class="toctree-l1"><a class="reference internal" href="modules/fairness.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules/fairness/samplers.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness.samplers</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules/fairness/statistical_significance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness.statistical_significance</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/fairness/practical_significance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness.practical_significance</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/fairness/combine_significance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness.combine_significance</span></code></a></li>
 </ul>
 
             
@@ -159,6 +161,8 @@
  <a href="#_"><strong>_</strong></a>
  | <a href="#A"><strong>A</strong></a>
  | <a href="#B"><strong>B</strong></a>
+ | <a href="#D"><strong>D</strong></a>
+ | <a href="#F"><strong>F</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
@@ -168,12 +172,14 @@
 <h2 id="_">_</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/fairness/samplers.html#valiant.fairness.samplers.Balanced_sampling.__init__">__init__() (valiant.fairness.samplers.Balanced_sampling method)</a>
+      <li><a href="modules/fairness/combine_significance.html#valiant.fairness.combine_significance.Tost.__init__">__init__() (valiant.fairness.combine_significance.Tost method)</a>
 
       <ul>
-        <li><a href="modules/fairness/statistical_significance.html#valiant.fairness.statistical_significance.Anova.__init__">(valiant.fairness.statistical_significance.Anova method)</a>
+        <li><a href="modules/fairness/practical_significance.html#valiant.fairness.practical_significance.Disparate_Impact.__init__">(valiant.fairness.practical_significance.Disparate_Impact method)</a>
 </li>
-        <li><a href="modules/fairness/statistical_significance.html#valiant.fairness.statistical_significance.Tost.__init__">(valiant.fairness.statistical_significance.Tost method)</a>
+        <li><a href="modules/fairness/samplers.html#valiant.fairness.samplers.Balanced_sampling.__init__">(valiant.fairness.samplers.Balanced_sampling method)</a>
+</li>
+        <li><a href="modules/fairness/statistical_significance.html#valiant.fairness.statistical_significance.Anova.__init__">(valiant.fairness.statistical_significance.Anova method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -199,6 +205,22 @@
   </ul></td>
 </tr></table>
 
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/fairness/practical_significance.html#valiant.fairness.practical_significance.Disparate_Impact">Disparate_Impact (class in valiant.fairness.practical_significance)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/fairness/practical_significance.html#valiant.fairness.practical_significance.Disparate_Impact.four_fifths_rule">four_fifths_rule() (valiant.fairness.practical_significance.Disparate_Impact method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -207,6 +229,10 @@
 
       <ul>
         <li><a href="modules/fairness.html#module-valiant.fairness">valiant.fairness</a>
+</li>
+        <li><a href="modules/fairness/combine_significance.html#module-valiant.fairness.combine_significance">valiant.fairness.combine_significance</a>
+</li>
+        <li><a href="modules/fairness/practical_significance.html#module-valiant.fairness.practical_significance">valiant.fairness.practical_significance</a>
 </li>
         <li><a href="modules/fairness/samplers.html#module-valiant.fairness.samplers">valiant.fairness.samplers</a>
 </li>
@@ -227,11 +253,11 @@
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/fairness/statistical_significance.html#valiant.fairness.statistical_significance.Tost">Tost (class in valiant.fairness.statistical_significance)</a>
+      <li><a href="modules/fairness/combine_significance.html#valiant.fairness.combine_significance.Tost">Tost (class in valiant.fairness.combine_significance)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/fairness/statistical_significance.html#valiant.fairness.statistical_significance.Tost.tost">tost() (valiant.fairness.statistical_significance.Tost method)</a>
+      <li><a href="modules/fairness/combine_significance.html#valiant.fairness.combine_significance.Tost.tost">tost() (valiant.fairness.combine_significance.Tost method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -247,14 +273,28 @@
 </li>
       </ul></li>
       <li>
+    valiant.fairness.combine_significance
+
+      <ul>
+        <li><a href="modules/fairness/combine_significance.html#module-valiant.fairness.combine_significance">module</a>
+</li>
+      </ul></li>
+      <li>
+    valiant.fairness.practical_significance
+
+      <ul>
+        <li><a href="modules/fairness/practical_significance.html#module-valiant.fairness.practical_significance">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
     valiant.fairness.samplers
 
       <ul>
         <li><a href="modules/fairness/samplers.html#module-valiant.fairness.samplers">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     valiant.fairness.statistical_significance
 

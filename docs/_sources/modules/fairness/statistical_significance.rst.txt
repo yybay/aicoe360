@@ -8,10 +8,3 @@ ANOVA (Analysis of Variance)
    :members:
    :special-members:
    :exclude-members: __dict__,__weakref__
-
-TOST (Two One-Sided T Tests)
------------------------------
-.. autoclass:: Tost
-   :members:
-   :special-members:
-   :exclude-members: __dict__,__weakref__

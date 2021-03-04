@@ -87,6 +87,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../modules/fairness.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules/fairness/samplers.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness.samplers</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules/fairness/statistical_significance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness.statistical_significance</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/fairness/practical_significance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness.practical_significance</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/fairness/combine_significance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness.combine_significance</span></code></a></li>
 </ul>
 
             
@@ -165,64 +167,6 @@
 <span class="kn">from</span> <span class="nn">statsmodels.formula.api</span> <span class="kn">import</span> <span class="n">ols</span>
 <span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">ss</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-
-<div class="viewcode-block" id="Tost"><a class="viewcode-back" href="../../../modules/fairness/statistical_significance.html#valiant.fairness.statistical_significance.Tost">[docs]</a><span class="k">class</span> <span class="nc">Tost</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Implementation of TOST with automated checks for assumption</span>
-<span class="sd">    violations</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-<div class="viewcode-block" id="Tost.__init__"><a class="viewcode-back" href="../../../modules/fairness/statistical_significance.html#valiant.fairness.statistical_significance.Tost.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dep_var</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Create an instance of the :class:`Tost`</span>
-
-<span class="sd">        :param df: dataframe of dataset with independent and dependent variables</span>
-<span class="sd">        :type df: pandas dataframe</span>
-<span class="sd">        :param dep_var: name of dependent variable column. All other variables in dataframe are assumed to be independent variables</span>
-<span class="sd">        :type dep_var: string</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">indep_var</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">dep_var</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dep_var</span> <span class="o">=</span> <span class="n">dep_var</span></div>
-
-
-<div class="viewcode-block" id="Tost.tost"><a class="viewcode-back" href="../../../modules/fairness/statistical_significance.html#valiant.fairness.statistical_significance.Tost.tost">[docs]</a>    <span class="k">def</span> <span class="nf">tost</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">upp</span><span class="p">,</span> <span class="n">print_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The two-one-sided t-test is a test of (non-)equivalence for two independent samples</span>
-
-<span class="sd">        TOST: two one-sided t tests</span>
-
-<span class="sd">        null hypothesis: m1 - m2 &lt; low or m1 - m2 &gt; upp alternative hypothesis: low &lt; m1 - m2 &lt; upp</span>
-
-<span class="sd">        where m1, m2 are the means, expected values of the two samples.</span>
-
-<span class="sd">        If the pvalue is smaller than a threshold, say 0.05, then we reject the hypothesis that the difference between the two samples is larger than the the thresholds given by low and upp.</span>
-
-<span class="sd">        :param low: Equivalence interval low &lt; m1 - m2 &lt; upp</span>
-<span class="sd">        :type low: float</span>
-<span class="sd">        :param upp: Equivalence interval low &lt; m1 - m2 &lt; upp</span>
-<span class="sd">        :type upp: float</span>
-<span class="sd">        :param print_output: Prints the dataframe results of the ANOVA analysis. Default is True</span>
-<span class="sd">        :type print_output: boolean, optional</span>
-<span class="sd">        :param usevar: {&quot;pooled&quot;, &quot;unequal&quot;}</span>
-<span class="sd">            If `pooled`, then the standard deviation of the samples is assumed to be the same.</span>
-<span class="sd">            If `unequal`, then Welsh ttest with Satterthwait degrees of freedom is used</span>
-<span class="sd">        :type usevar: string, optional</span>
-<span class="sd">        :param weights: Case weights for the two samples. Default is None</span>
-<span class="sd">        :type weights: tuples of None or ndarrays, optional</span>
-<span class="sd">        :param transform: \n</span>
-<span class="sd">            - If `None` (default), then the data is not transformed \n</span>
-<span class="sd">            - If given a `function`, sample data and thresholds are transformed. If transform is log, then the equivalence interval is in ratio: low &lt; m1 / m2 &lt; upp</span>
-<span class="sd">        :type transform: None or function, optional</span>
-<span class="sd">        :return: **Dataframe** with pvalue of equivalence test, test statistic and pvalue for lower/upper threshold test</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">print_output</span> <span class="o">=</span> <span class="n">print_output</span></div></div>
-<span class="c1">#        self.tost_df = self._tost_analysis(**kwargs)</span>
-<span class="c1">#</span>
-<span class="c1">#        return self.tost_df</span>
 
 
 <div class="viewcode-block" id="Anova"><a class="viewcode-back" href="../../../modules/fairness/statistical_significance.html#valiant.fairness.statistical_significance.Anova">[docs]</a><span class="k">class</span> <span class="nc">Anova</span><span class="p">:</span>
