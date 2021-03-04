@@ -32,6 +32,7 @@
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -163,8 +164,7 @@
             
   <div class="section" id="module-valiant.fairness.practical_significance">
 <span id="valiant-fairness-practical-significance"></span><h1><a class="reference internal" href="#module-valiant.fairness.practical_significance" title="valiant.fairness.practical_significance"><code class="xref py py-mod docutils literal notranslate"><span class="pre">valiant.fairness.practical_significance</span></code></a><a class="headerlink" href="#module-valiant.fairness.practical_significance" title="Permalink to this headline">¶</a></h1>
-<p>This module wraps statistical modules and automatically delivers the p-value, test statistic,
-with its associated model assumptions.</p>
+<p>This module wraps metrics that measures individual and group fairness.</p>
 <div class="section" id="disparate-impact">
 <h2>Disparate Impact<a class="headerlink" href="#disparate-impact" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
@@ -202,7 +202,7 @@ test for adverse impact.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>boolean to show whether ratio violates the four-fifths rule. If True, its &lt; 80%. If False, its $geq$ 80%</p>
+<dd class="field-even"><p>boolean to show whether ratio violates the four-fifths rule. If True, its <span class="math notranslate nohighlight">\(&lt; 80%\)</span>. If False, its <span class="math notranslate nohighlight">\(\geq 80%\)</span></p>
 </dd>
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>bool</p>
