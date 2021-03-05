@@ -22,11 +22,9 @@ class Anova:
         """
         Create an instance of the :class:`Anova`
 
-        :param df: dataframe of dataset with independent and dependent variables
-        :type df: pandas dataframe
-        :param dep_var: name of dependent variable column. All other variables in dataframe are assumed to be independent variables
+        :param pandas.DataFrame df: dataframe with independent and dependent variables
+        :param string dep_var: name of dependent variable column. All other variables in dataframe are assumed to be independent variables
          to be independent variables
-        :type dep_var: string
         """
 
         self.df = df.copy()
@@ -42,16 +40,16 @@ class Anova:
         :type print_output: boolean, optional
     	:param scale: Estimate of variance, If `None`, will be estimated from the largest
     	    model. Default is `None`.
-        :type scale: float
+        :type scale: float, optional
         :param test: {None, "F", "Chisq", "Cp"}. Test statistics to provide. Default is "F".
-        :type test: string
+        :type test: string, optiuonal
         :param ss_type: {"I", "II", "III"} or {1, 2, 3}. The type of Anova test to perform. Default is `2`
-        :type ss_type: string or int
+        :type ss_type: string or int, optional
         :param robust: {None, "hc0", "hc1", "hc2", "hc3"}.
             Use heteroscedasticity-corrected coefficient covariance matrix.
     	    If robust covariance is desired, it is recommended to use `hc3`.
-        :type robust: string
-        :return: **Dataframe** containing sum of squares, test statistic, and p-value
+        :type robust: string, optional
+        :return: `pandas.DataFrame` containing sum of squares, test statistic, and p-value
         """
 
         self.print_output = print_output

@@ -179,10 +179,8 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create an instance of the :class:`Tost`</span>
 
-<span class="sd">        :param df: dataframe of dataset with independent and dependent variables</span>
-<span class="sd">        :type df: pandas dataframe</span>
-<span class="sd">        :param dep_var: name of dependent variable column. All other variables in dataframe are assumed to be independent variables</span>
-<span class="sd">        :type dep_var: string</span>
+<span class="sd">        :param pandas.DataFrame df: dataframe with independent and dependent variables</span>
+<span class="sd">        :param string dep_var: name of dependent variable column. All other variables in dataframe are assumed to be independent variables</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -214,11 +212,11 @@
 <span class="sd">        :type usevar: string, optional</span>
 <span class="sd">        :param weights: Case weights for the two samples. Default is None</span>
 <span class="sd">        :type weights: tuples of None or ndarrays, optional</span>
-<span class="sd">        :param transform: \n</span>
-<span class="sd">            - If `None` (default), then the data is not transformed \n</span>
+<span class="sd">        :param transform:</span>
+<span class="sd">            - If `None` (default), then the data is not transformed</span>
 <span class="sd">            - If given a `function`, sample data and thresholds are transformed. If transform is log, then the equivalence interval is in ratio: low &lt; m1 / m2 &lt; upp</span>
 <span class="sd">        :type transform: None or function, optional</span>
-<span class="sd">        :return: **Dataframe** with pvalue of equivalence test, test statistic and pvalue for lower/upper threshold test</span>
+<span class="sd">        :return: `pandas.DataFrame` with pvalue of equivalence test, test statistic and pvalue for lower/upper threshold test</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">print_output</span> <span class="o">=</span> <span class="n">print_output</span></div></div>

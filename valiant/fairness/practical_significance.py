@@ -18,8 +18,7 @@ class Disparate_Impact:
         """
         Create an instance of the :class:`Disparate_Impact`
 
-        :param df: dataframe of dataset with independent and dependent variables
-        :type df: pandas dataframe
+        :param pandas.DataFrame df: dataframe with independent and dependent variables
         """
 
 
@@ -39,7 +38,7 @@ class Disparate_Impact:
 
         :param string dep_var: dependent variable name in dataframe
         :param string ind_var: independent variable name in dataframe
-        :returns:
+        :return:
             - ratio (:py:class:`float`) - the rate of favorable outcome for the minority group to that of the majority group
             - violation (:py:class:`boolean`) to indicate whether the four-fifths rule is violated. If True, ratio is < 80%.
         """

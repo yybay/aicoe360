@@ -179,7 +179,7 @@ violations</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>df</strong> (<em>pandas dataframe</em>) – dataframe of dataset with independent and dependent variables</p></li>
+<li><p><strong>df</strong> (<em>pandas.DataFrame</em>) – dataframe with independent and dependent variables</p></li>
 <li><p><strong>dep_var</strong> (<em>string</em>) – name of dependent variable column. All other variables in dataframe are assumed to be independent variables
 to be independent variables</p></li>
 </ul>
@@ -195,17 +195,17 @@ to be independent variables</p></li>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>print_output</strong> (<em>boolean</em><em>, </em><em>optional</em>) – Prints the dataframe results of the ANOVA analysis. Default is True.</p></li>
-<li><p><strong>scale</strong> (<em>float</em>) – Estimate of variance, If <cite>None</cite>, will be estimated from the largest
+<li><p><strong>scale</strong> (<em>float</em><em>, </em><em>optional</em>) – Estimate of variance, If <cite>None</cite>, will be estimated from the largest
 model. Default is <cite>None</cite>.</p></li>
-<li><p><strong>test</strong> (<em>string</em>) – {None, “F”, “Chisq”, “Cp”}. Test statistics to provide. Default is “F”.</p></li>
-<li><p><strong>ss_type</strong> (<em>string</em><em> or </em><em>int</em>) – {“I”, “II”, “III”} or {1, 2, 3}. The type of Anova test to perform. Default is <cite>2</cite></p></li>
-<li><p><strong>robust</strong> (<em>string</em>) – {None, “hc0”, “hc1”, “hc2”, “hc3”}.
+<li><p><strong>test</strong> (<em>string</em><em>, </em><em>optiuonal</em>) – {None, “F”, “Chisq”, “Cp”}. Test statistics to provide. Default is “F”.</p></li>
+<li><p><strong>ss_type</strong> (<em>string</em><em> or </em><em>int</em><em>, </em><em>optional</em>) – {“I”, “II”, “III”} or {1, 2, 3}. The type of Anova test to perform. Default is <cite>2</cite></p></li>
+<li><p><strong>robust</strong> (<em>string</em><em>, </em><em>optional</em>) – {None, “hc0”, “hc1”, “hc2”, “hc3”}.
 Use heteroscedasticity-corrected coefficient covariance matrix.
 If robust covariance is desired, it is recommended to use <cite>hc3</cite>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>Dataframe</strong> containing sum of squares, test statistic, and p-value</p>
+<dd class="field-even"><p><cite>pandas.DataFrame</cite> containing sum of squares, test statistic, and p-value</p>
 </dd>
 </dl>
 </dd></dl>

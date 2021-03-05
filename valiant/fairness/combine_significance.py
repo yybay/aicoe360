@@ -22,10 +22,8 @@ class Tost:
         """
         Create an instance of the :class:`Tost`
 
-        :param df: dataframe of dataset with independent and dependent variables
-        :type df: pandas dataframe
-        :param dep_var: name of dependent variable column. All other variables in dataframe are assumed to be independent variables
-        :type dep_var: string
+        :param pandas.DataFrame df: dataframe with independent and dependent variables
+        :param string dep_var: name of dependent variable column. All other variables in dataframe are assumed to be independent variables
         """
 
         self.df = df.copy()
@@ -57,11 +55,11 @@ class Tost:
         :type usevar: string, optional
         :param weights: Case weights for the two samples. Default is None
         :type weights: tuples of None or ndarrays, optional
-        :param transform: \n
-            - If `None` (default), then the data is not transformed \n
+        :param transform:
+            - If `None` (default), then the data is not transformed
             - If given a `function`, sample data and thresholds are transformed. If transform is log, then the equivalence interval is in ratio: low < m1 / m2 < upp
         :type transform: None or function, optional
-        :return: **Dataframe** with pvalue of equivalence test, test statistic and pvalue for lower/upper threshold test
+        :return: `pandas.DataFrame` with pvalue of equivalence test, test statistic and pvalue for lower/upper threshold test
         """
 
         self.print_output = print_output

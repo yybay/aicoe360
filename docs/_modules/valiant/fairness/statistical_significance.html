@@ -179,11 +179,9 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create an instance of the :class:`Anova`</span>
 
-<span class="sd">        :param df: dataframe of dataset with independent and dependent variables</span>
-<span class="sd">        :type df: pandas dataframe</span>
-<span class="sd">        :param dep_var: name of dependent variable column. All other variables in dataframe are assumed to be independent variables</span>
+<span class="sd">        :param pandas.DataFrame df: dataframe with independent and dependent variables</span>
+<span class="sd">        :param string dep_var: name of dependent variable column. All other variables in dataframe are assumed to be independent variables</span>
 <span class="sd">         to be independent variables</span>
-<span class="sd">        :type dep_var: string</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -199,16 +197,16 @@
 <span class="sd">        :type print_output: boolean, optional</span>
 <span class="sd">    	:param scale: Estimate of variance, If `None`, will be estimated from the largest</span>
 <span class="sd">    	    model. Default is `None`.</span>
-<span class="sd">        :type scale: float</span>
+<span class="sd">        :type scale: float, optional</span>
 <span class="sd">        :param test: {None, &quot;F&quot;, &quot;Chisq&quot;, &quot;Cp&quot;}. Test statistics to provide. Default is &quot;F&quot;.</span>
-<span class="sd">        :type test: string</span>
+<span class="sd">        :type test: string, optiuonal</span>
 <span class="sd">        :param ss_type: {&quot;I&quot;, &quot;II&quot;, &quot;III&quot;} or {1, 2, 3}. The type of Anova test to perform. Default is `2`</span>
-<span class="sd">        :type ss_type: string or int</span>
+<span class="sd">        :type ss_type: string or int, optional</span>
 <span class="sd">        :param robust: {None, &quot;hc0&quot;, &quot;hc1&quot;, &quot;hc2&quot;, &quot;hc3&quot;}.</span>
 <span class="sd">            Use heteroscedasticity-corrected coefficient covariance matrix.</span>
 <span class="sd">    	    If robust covariance is desired, it is recommended to use `hc3`.</span>
-<span class="sd">        :type robust: string</span>
-<span class="sd">        :return: **Dataframe** containing sum of squares, test statistic, and p-value</span>
+<span class="sd">        :type robust: string, optional</span>
+<span class="sd">        :return: `pandas.DataFrame` containing sum of squares, test statistic, and p-value</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">print_output</span> <span class="o">=</span> <span class="n">print_output</span>
