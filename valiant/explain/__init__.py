@@ -3,11 +3,11 @@ The Validation Analysis Toolkit (VALIANT).
 """
 
 # Project Imports
-from valiant.explain import explains
+from valiant.explain import explainer
 from valiant.explain import knowledge_distillation
 
 # Class Imports
-from valiant.explain.explains import Explain
+from valiant.explain.explainer import Explainer
 from valiant.explain.knowledge_distillation import Lgbm
 
 

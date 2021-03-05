@@ -3,7 +3,7 @@
 .. automodule:: valiant.explain
    :members:
 
-Base Class Explain
--------------------
-.. autoclass:: Explain
+Base Class Explainer
+---------------------
+.. autoclass:: Explainer
    :members:
