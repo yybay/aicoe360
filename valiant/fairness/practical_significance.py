@@ -24,11 +24,12 @@ class Disparate_Impact:
 
     def four_fifths_rule(self, dep_var, ind_var, print_output=True, **kwargs):
         """
-        The four-fifths or 80% rule is described by the guidelines as “a selection rate for any
-        race, sex, or ethnic group which is less than four-fifths (or 80%) of the  rate for the
-        group with the highest rate will generally be regarded by the Federal enforcement agencies
-        as evidence of adverse impact, while a greater than four-fifths rate will generally not be
-        regarded by Federal enforcement agencies as evidence of adverse impact.”
+        The four-fifths or 80% rule is described by the `Uniform Guidelines <https://en.wikipedia.org/wiki/Disparate_impact>`_
+        as “a selection rate for any race, sex, or ethnic group which is less than four-fifths
+        (or 80%) of the  rate for the group with the highest rate will generally be regarded by
+        the Federal enforcement agencies as evidence of adverse impact, while a greater than
+        four-fifths rate will generally not be regarded by Federal enforcement agencies as evidence
+        of adverse impact.”
 
         Since the 80% test does not involve probability distributions to determine whether
         the disparity is a “beyond chance” occurrence, it is usually not regarded as a definitive
