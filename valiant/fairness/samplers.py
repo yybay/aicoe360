@@ -2,8 +2,8 @@
 This module builds sampling strategies that ensures balanced sampling across important
 key predictors, beyond the y-label.
 
-For instance, for a classifier that has protected classes (e.g. gender) as predictor(s),
-it is imperative that during the sampling process of train_test_split, there exists apprximately
+For instance, for a classifier that has protected classes (e.g. gender) as predictors,
+it is imperative that during the sampling process of train_test_split, there exists approximately
 balanced numbers of males and females in both the train and test set, in order
 for the model to be reliable, trustworthy, and devoid of potential biases.
 """
