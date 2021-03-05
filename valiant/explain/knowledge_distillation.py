@@ -4,6 +4,7 @@ complex model’s predictions. These simpler models can be considered as global
 interpretations that are learned using a post-hoc surrogate model.
 
 Papers:
+
 - `L. J. Ba and R. Caurana. Do deep nets really need to be deep? CoRR, abs/1312.6184, 2013. <https://arxiv.org/abs/1312.6184>`_
 - `C. Bucilua, R. Caruana, and A. Niculescu-Mizil. Model compression. In ˇ Proceedings of the 12th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, 2006. <https://dl.acm.org/doi/pdf/10.1145/1150402.1150464?casa_token=AqdcozJZqVoAAAAA:rgn3A-yAhlSJ53bVyvx4FCV0dfoJdYE6BWMVFDWXqZlGQ-7llsdAp_aAwBZd3I3nlXifhYAf4b2n>`_
 """
