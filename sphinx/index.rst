@@ -50,6 +50,8 @@ Supported Machine Learning Libraries
    modules/fairness/statistical_significance
    modules/fairness/practical_significance
    modules/fairness/combine_significance
+   modules/explain
+   modules/explain/knowledge_distillation
 
 
 Indices and tables
