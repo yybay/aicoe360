@@ -32,7 +32,6 @@
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -195,13 +194,11 @@
 
 <span class="sd">        Instead, other statistical tests may be used for this purpose.</span>
 
-<span class="sd">        :param dep_var: dependent variable name in dataframe</span>
-<span class="sd">        :type dep_var: string</span>
-<span class="sd">        :param ind_var: independent variable name in dataframe</span>
-<span class="sd">        :type ind_var: string</span>
+<span class="sd">        :param string dep_var: dependent variable name in dataframe</span>
+<span class="sd">        :param string ind_var: independent variable name in dataframe</span>
 <span class="sd">        :returns:</span>
 <span class="sd">            - ratio (:py:class:`float`) - the rate of favorable outcome for the minority group to that of the majority group</span>
-<span class="sd">            - violation (:py:class:`boolean`) to indicate whether the four-fifths rule is violated. If True, its :math:`&lt;`80%. If False, its :math:`\geq`80%</span>
+<span class="sd">            - violation (:py:class:`boolean`) to indicate whether the four-fifths rule is violated. If True, ratio is &lt; 80%.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">cat</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">ind_var</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>

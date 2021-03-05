@@ -37,13 +37,11 @@ class Disparate_Impact:
 
         Instead, other statistical tests may be used for this purpose.
 
-        :param dep_var: dependent variable name in dataframe
-        :type dep_var: string
-        :param ind_var: independent variable name in dataframe
-        :type ind_var: string
+        :param string dep_var: dependent variable name in dataframe
+        :param string ind_var: independent variable name in dataframe
         :returns:
             - ratio (:py:class:`float`) - the rate of favorable outcome for the minority group to that of the majority group
-            - violation (:py:class:`boolean`) to indicate whether the four-fifths rule is violated. If True, its :math:`<`80%. If False, its :math:`\geq`80%
+            - violation (:py:class:`boolean`) to indicate whether the four-fifths rule is violated. If True, ratio is < 80%.
         """
 
         cat = df[ind_var].unique()
