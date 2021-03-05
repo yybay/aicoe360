@@ -50,8 +50,8 @@ class Tost:
         :param print_output: Prints the dataframe results of the ANOVA analysis. Default is True
         :type print_output: boolean, optional
         :param usevar: {"pooled", "unequal"}
-            - If `pooled`, then the standard deviation of the samples is assumed to be the same
-            - If `unequal`, then Welsh ttest with Satterthwait degrees of freedom is used
+            If `pooled`, then the standard deviation of the samples is assumed to be the same
+            If `unequal`, then Welsh ttest with Satterthwait degrees of freedom is used
         :type usevar: string, optional
         :param weights: Case weights for the two samples. Default is None
         :type weights: tuples of None or ndarrays, optional
